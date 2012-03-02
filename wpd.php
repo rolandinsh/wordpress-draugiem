@@ -22,7 +22,11 @@ define('WPDRAUGIEMI',WPDRAUGIEMURL.'/img'); // Image location @since 1.0.0
 /* SMC WordPress Draugiem Class for later development
 * @todo make extendable class (OOP)
 */
-class SMC_WordPress_Draugiem{} 
+class SMC_WordPress_Draugiem{
+	function SMC_WordPress_Draugiem(){
+			return '';
+		}
+} 
 
 function smcwpd_set_plugin_meta($links, $file) {
 	$plugin = plugin_basename(__FILE__);
@@ -82,73 +86,6 @@ function smc_draugiem_say_content($content){
 add_filter('the_content', 'smc_draugiem_say_content');
 
 
-function smc_draugiem_say_head(){
-	global $post;
-	$showsmcwpdh = get_option('smc_wpd_ieteikt_all');
-	$smcwpd_showfieldh = get_post_meta($post->ID, 'smcwpd_showfield', true);
-/*
- * @todo optimizēt!
-*/
-	if($showsmcwpdh!='on' && $smcwpd_showfieldh=='1'){$paradit_smcwpdh=1;}
-	if($showsmcwpdh=='on' && !$smcwpd_showfieldh){$paradit_smcwpdh=1;}
-	if($showsmcwpdh=='on' && $smcwpd_showfieldh=='1'){$paradit_smcwpdh=1;}
-	if($showsmcwpdh=='on' && $smcwpd_showfieldh=='0'){$paradit_smcwpdh=0;}
-	if(is_singular() && $paradit_smcwpdh==1){
-		if(has_post_thumbnail($post->ID)) {
-			$smc_draugiem_head_img = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ),'thumbnail');
-			echo '<meta name="dr:say:img" content="'.esc_attr( $smc_draugiem_head_img[0] ).'" />';
-		}
-		echo '<meta name="dr:say:title" content="'.esc_attr( $post->post_title ).'" />';
-	}
-
-}
-add_filter('wp_head', 'smc_draugiem_say_head',2);
-
-// --------------------------------------------------------------------------------
-/* Define the custom box */
-
-add_action( 'add_meta_boxes', 'smc_wpd_add_pmetbox' );
-add_action( 'save_post', 'smc_wpd_save_postmetadata' );
-
-/* Adds a box to the main column on the Post and Page edit screens */
-function smc_wpd_add_pmetbox() {
-    add_meta_box('smcwpd_metabox_section','WordPress Draugiem','smc_wpd_metawrapbox','post','side');
-    add_meta_box('smcwpd_metabox_section','WordPress Draugiem','smc_wpd_metawrapbox','page','side');
-}
-
-/* Prints the box content */
-function smc_wpd_metawrapbox( $post ) {
-	$smcwpd_showfieldv = get_post_meta($post->ID, 'smcwpd_showfield', true);
-	wp_nonce_field( plugin_basename( __FILE__ ), 'wpd_noncex' );
-	echo '<label for="smcwpd_showfield">Rādīt šajā lapā</label> ';
-	echo '<input type="checkbox" id="smcwpd_showfield" name="smcwpd_showfield" value="1" '.checked( $smcwpd_showfieldv, 1 ).' />';
-	
-}
-
-function smc_wpd_save_postmetadata( $post_id ) {
-  if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) 
-      return;
-
-  if ( !wp_verify_nonce( $_POST['wpd_noncex'], plugin_basename( __FILE__ ) ) )
-      return;
-
-  if ('page' == $_POST['post_type']){
-    if(!current_user_can('edit_page',$post_id))
-        return;
-  }
-  else{
-	  if(!current_user_can('edit_post', $post_id) )
-        return;
-  }
-
-  $smcwpd_postdata = $_POST['smcwpd_showfield'];
-  
-  update_post_meta($post_id, 'smcwpd_showfield', $smcwpd_postdata); // location general @since 1.2.1
-
-
-  //
-}
-
 /*
  * Draugiem ieteikt pogas īsais kods 
  * @since 1.3.0
@@ -163,6 +100,19 @@ function smcwp_ieteikt_shortcode() {
 	return '<!-- WordPress Draugiem '.WPDRAUGIEMV.' by Rolands Umbrovskis | http://mediabox.lv/wordpress-draugiem/ --><iframe height="20" width="84" frameborder="0" src="http://www.draugiem.lv/say/ext/like.php?title='.$posttitle.'&amp;url='.$posturl.'&amp;titlePrefix='.$awesomeblog.'"></iframe><!-- //WordPress Draugiem -->';
 }
 add_shortcode('ieteiktdraugiem', 'smcwp_ieteikt_shortcode');
+function smcwp_ieteikt_shortcode_list($atts) {
+     extract(shortcode_atts(array(
+	      'domain' => get_home_url(),
+	      'count' => 5,
+	      'id' => 'smc_wpd_recommend_list',
+     ), $atts));
+	 
+	global $post;
+
+	return '<!-- WordPress Draugiem '.WPDRAUGIEMV.' by Rolands Umbrovskis | http://mediabox.lv/wordpress-draugiem/ --><iframe src="http://www.draugiem.lv/say/ext/recommend.php?url='.$domain.'&count='.$count.'" frameborder="0" class="smc_draugiem_recommend_list" id="'.$id.'"></iframe><!-- //WordPress Draugiem -->';
+}
+add_shortcode('ieteikumusaraksts', 'smcwp_ieteikt_shortcode_list');
+
 
 
 include_once(WPDRAUGIEM.'/admin/autoload_admin.php');
