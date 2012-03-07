@@ -1,9 +1,9 @@
 <?php 
 /**
  * Plugin Name: WordPress Draugiem
- * Plugin URI: http://mediabox.lv/wordpress-draugiem/?utm_source=wordpress&utm_medium=wpplugin&utm_campaign=WordPressDraugiem&utm_content=v-1-2-1-wp-draugiem_load_widgets
+ * Plugin URI: http://mediabox.lv/wordpress-draugiem/?utm_source=wordpress&utm_medium=wpplugin&utm_campaign=WordPressDraugiem&utm_content=v-1-4-0-wp-draugiem_load_widgets
  * Description: WordPress plugin for Latvian Social Network Draugiem.lv
- * Version: 1.3.0
+ * Version: 1.4.0
  * Requires at least: 2.6
  * Author: Rolands Umbrovskis
  * Author URI: http://umbrovskis.com
@@ -12,11 +12,12 @@
 
 
 
-define('WPDRAUGIEMV','1.3.0'); // location general @since 1.0.0
+define('WPDRAUGIEMV','1.4.0'); // location general @since 1.0.0
 define('WPDRAUGIEM',dirname(__FILE__)); // location general @since 1.0.0
 define('WPDRAUGIEMF','wordpress-draugiem'); // location folder @since 1.0.0
 define('WPDRAUGIEMURL', plugin_dir_url(__FILE__));
 define('WPDRAUGIEMI',WPDRAUGIEMURL.'/img'); // Image location @since 1.0.0
+define('WPDWPORG','http://wordpress.org/extend/plugins/'.WPDRAUGIEMF); // Image location @since 1.0.0
 
 // We will use this later ;)
 /* SMC WordPress Draugiem Class for later development
@@ -34,9 +35,9 @@ function smcwpd_set_plugin_meta($links, $file) {
 	if ($file == $plugin) {
 		return array_merge( $links, array( 
 
-			'<a href="http://atbalsts.mediabox.lv/diskusija/draugiem-lv-biznesa-lapu-wordpress-spraudnis/#new-post">' . __('Support Forum') . '</a>',
-			'<a href="http://atbalsts.mediabox.lv/temats/ieteikumi/#new-post">' . __('Feature request') . '</a>',
-			'<a href="http://atbalsts.mediabox.lv/wiki/Draugiem.lv_biznesa_lapu_fanu_Wordpress_spraudnis">' . __('Wiki page') . '</a>',
+			'<a href="http://atbalsts.mediabox.lv/diskusija/wordpress-darugiem-atbalsts/">' . __('Support Forum') . '</a>',
+			'<a href="http://atbalsts.mediabox.lv/diskusija/wordpress-darugiem-atbalsts/#new-post">' . __('Feature request') . '</a>',
+			'<a href="http://atbalsts.mediabox.lv/wiki/WordPress_Draugiem">' . __('Wiki page') . '</a>',
 			//'<a href="http://darbi.mediabox.lv/draugiem-lvlapas-fanu-wordpress-spraudnis/">www</a>',
 			'<a href="http://umbrovskis.com/ziedo/">' . __('Donate') . '</a>'
 			// ,'<a href="http://umbrovskis.com/">Umbrovskis.com</a>'
@@ -54,6 +55,7 @@ function smc_draugiem_say_content($content){
 /*
  * @todo optimizēt!
 */
+	$paradit_smcwpd =0;
 	if($showsmcwpd!='on' && $smcwpd_showfield=='1'){$paradit_smcwpd=1;}
 	if($showsmcwpd=='on' && !$smcwpd_showfield){$paradit_smcwpd=1;}
 	if($showsmcwpd=='on' && $smcwpd_showfield=='1'){$paradit_smcwpd=1;}
@@ -100,6 +102,7 @@ function smcwp_ieteikt_shortcode() {
 	return '<!-- WordPress Draugiem '.WPDRAUGIEMV.' by Rolands Umbrovskis | http://mediabox.lv/wordpress-draugiem/ --><iframe height="20" width="84" frameborder="0" src="http://www.draugiem.lv/say/ext/like.php?title='.$posttitle.'&amp;url='.$posturl.'&amp;titlePrefix='.$awesomeblog.'"></iframe><!-- //WordPress Draugiem -->';
 }
 add_shortcode('ieteiktdraugiem', 'smcwp_ieteikt_shortcode');
+
 function smcwp_ieteikt_shortcode_list($atts) {
      extract(shortcode_atts(array(
 	      'domain' => get_home_url(),
