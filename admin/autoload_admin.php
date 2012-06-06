@@ -3,7 +3,7 @@ add_action('admin_menu', 'smc_wpd_admin_menu');
 
 function smc_wpd_admin_menu() {
 	//create new top-level menu
-	add_menu_page('WordPress Draugiem', 'WP Draugiem', 'activate_plugins', 'smcwpd', 'smcwpd_settings');
+	add_menu_page(__('WordPress Draugiem','wpdraugiem'), __('WP Draugiem','wpdraugiem'), 'activate_plugins', 'smcwpd', 'smcwpd_settings');
 	add_submenu_page( 'smcwpd', __('Help'), __('Help'), 'edit_posts', 'smcwpdhelp', 'smcwpd_help');
 
 	register_setting( 'smc-wpd-settings', 'smc_wpd_ieteikt_all' );
@@ -28,12 +28,12 @@ $smc_wpd_ieteikt_where = get_option('smc_wpd_ieteikt_where');
 		<td valign="top"><input type="checkbox" id="smc_wpd_ieteikt_all" name="smc_wpd_ieteikt_all" <?php checked($smc_wpd_ieteikt_all,'on') ?> /></td>
 	</tr>
 	<tr>
-		<th valign="top">Sākumā / beigās</th>
+		<th valign="top"><?php _e('Start / End','wpdraugiem');?></th>
 		<td valign="top">
 <select name="smc_wpd_ieteikt_where">
-    <option value="1" <?php selected( $smc_wpd_ieteikt_where, 1 ); ?>>sākums</option>
-    <option value="2" <?php selected( $smc_wpd_ieteikt_where, 2 ); ?>>beigas</option>
-    <option value="3" <?php selected( $smc_wpd_ieteikt_where, 3 ); ?>>sākums un beigas</option>
+    <option value="1" <?php selected( $smc_wpd_ieteikt_where, 1 ); ?>><?php _e('Start','wpdraugiem');?></option>
+    <option value="2" <?php selected( $smc_wpd_ieteikt_where, 2 ); ?>><?php _e('End','wpdraugiem');?></option>
+    <option value="3" <?php selected( $smc_wpd_ieteikt_where, 3 ); ?>><?php _e('Start and End','wpdraugiem');?></option>
 </select>
         </td>
 	</tr>
@@ -72,12 +72,13 @@ function smcwpd_help(){
 // -------------------------------
 /*
  * Skati pie rakstiem un lapām
- * @todo ielikt API
+ * @todo will remove, if no complains
 */
+/* 
 add_filter('manage_posts_columns', 'smc_draugiem_ieteikt_kol');
 add_filter('manage_pages_columns', 'smc_draugiem_ieteikt_kol');
 function smc_draugiem_ieteikt_kol($columns) {
-    $columns['smc_draugiem_ieteikt'] = 'Draugiem.lv/say';
+    $columns['smc_draugiem_ieteikt'] = __('Draugiem.lv/say','wpdraugiem');
     return $columns;
 }
 
@@ -95,6 +96,62 @@ function smc_draugiem_ieteikt_kshow($name) {
 		echo '<iframe height="20" width="84" frameborder="0" src="http://www.draugiem.lv/say/ext/like.php?title='.$posttitle.'&amp;url='.$posturl.'&amp;titlePrefix='.$awesomeblog.'"></iframe>';
     }
 }
+*/
+
+/*
+ * Shares with Draugiem API
+*/
+
+add_filter('manage_posts_columns', 'smc_draugiem_ieteiktcounter_kol');
+add_filter('manage_pages_columns', 'smc_draugiem_ieteiktcounter_kol');
+function smc_draugiem_ieteiktcounter_kol($columns) {
+    $columns['smc_draugiem_ieteiktcount'] = __('Draugiem.lv/say','wpdraugiem'); // __('WPDR counter','wpdraugiem')
+    return $columns;
+}
+
+add_action('manage_posts_custom_column',  'smc_draugiem_ieteiktcounter_kshow');
+add_action('manage_pages_custom_column',  'smc_draugiem_ieteiktcounter_kshow');
+function smc_draugiem_ieteiktcounter_kshow($name) {
+    global $post;
+
+    switch ($name) {
+        case 'smc_draugiem_ieteiktcount':
+		$smc_dr_ieteiktcount = get_post_meta($post->ID, '_wpdr_total_shares', true);
+		echo $smc_dr_ieteiktcount;
+    }
+}
+
+
+function add_day_filter( $where = '', $from_x_days_back, $to_x_days_back ){
+	$days_into_past = $from_x_days_back;
+	$where .= " AND post_date >= '" . date('Y-m-d', strtotime('-' . $to_x_days_back .' days')) . "'" . " AND post_date <= '" . date('Y-m-d', strtotime('-' . $days_into_past .' days')) . "'";
+	return $where;
+}
+
+function old2d( $where = '' ){
+	$where .= " AND post_date > '" . date('Y-m-d', strtotime('-2 days')) . "'";
+	return $where;
+}
+
+function old2_7d( $where = '' ){
+	$where .= " AND post_date >= '" . date('Y-m-d', strtotime('-7 days')) . "'" . " AND post_date <= '" . date('Y-m-d', strtotime('-2 days')) . "'";
+	return $where;
+}
+
+function old7_30d( $where = '' ){
+	return add_day_filter($where, 8, 30);
+}
+
+function old30_180d( $where = '' ){
+	return add_day_filter($where, 31, 180);
+	
+}
+
+function old180dm( $where = '' ) {
+	return add_day_filter($where, 181, 3600); // 10 year default
+
+}
+
 // -----------------------------------
 
 
@@ -105,6 +162,7 @@ function smc_draugiem_say_head(){
 /*
  * @todo optimizēt!
 */
+	$paradit_smcwpdh=0;
 	if($showsmcwpdh!='on' && $smcwpd_showfieldh=='1'){$paradit_smcwpdh=1;}
 	if($showsmcwpdh=='on' && !$smcwpd_showfieldh){$paradit_smcwpdh=1;}
 	if($showsmcwpdh=='on' && $smcwpd_showfieldh=='1'){$paradit_smcwpdh=1;}
@@ -128,15 +186,15 @@ add_action( 'save_post', 'smc_wpd_save_postmetadata' );
 
 /* Adds a box to the main column on the Post and Page edit screens */
 function smc_wpd_add_pmetbox() {
-    add_meta_box('smcwpd_metabox_section','WordPress Draugiem','smc_wpd_metawrapbox','post','side');
-    add_meta_box('smcwpd_metabox_section','WordPress Draugiem','smc_wpd_metawrapbox','page','side');
+    add_meta_box('smcwpd_metabox_section',__('WordPress Draugiem','wpdraugiem'),'smc_wpd_metawrapbox','post','side');
+    add_meta_box('smcwpd_metabox_section',__('WordPress Draugiem','wpdraugiem'),'smc_wpd_metawrapbox','page','side');
 }
 
 /* Prints the box content */
 function smc_wpd_metawrapbox( $post ) {
 	$smcwpd_showfieldv = get_post_meta($post->ID, 'smcwpd_showfield', true);
 	wp_nonce_field( plugin_basename( __FILE__ ), 'wpd_noncex' );
-	echo '<label for="smcwpd_showfield">Rādīt šajā lapā</label> ';
+	echo '<label for="smcwpd_showfield">'.__('Show on this page','wpdraugiem').'</label> ';
 	echo '<input type="checkbox" id="smcwpd_showfield" name="smcwpd_showfield" value="1" '.checked( $smcwpd_showfieldv, 1 ).' />';
 	
 }
