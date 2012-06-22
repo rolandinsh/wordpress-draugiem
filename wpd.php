@@ -1,9 +1,9 @@
 <?php 
 /**
  * Plugin Name: WordPress Draugiem
- * Plugin URI: http://mediabox.lv/wordpress-draugiem/?utm_source=wordpress&utm_medium=wpplugin&utm_campaign=WordPressDraugiem&utm_content=v-1-5-0-wp-draugiem_load_widgets
+ * Plugin URI: http://mediabox.lv/wordpress-draugiem/?utm_source=wordpress&utm_medium=wpplugin&utm_campaign=WordPressDraugiem&utm_content=v-1-5-1-wp-draugiem_load_widgets
  * Description: WordPress plugin for Latvian Social Network Draugiem.lv
- * Version: 1.5.0
+ * Version: 1.5.1
  * Requires at least: 2.6
  * Author: Rolands Umbrovskis
  * Author URI: http://umbrovskis.com
@@ -12,7 +12,7 @@
 
 
 
-define('WPDRAUGIEMV','1.5.0'); // location general @since 1.0.0
+define('WPDRAUGIEMV','1.5.1'); // location general @since 1.0.0
 define('WPDRAUGIEM',dirname(__FILE__)); // location general @since 1.0.0
 define('WPDRAUGIEMF','wordpress-draugiem'); // location folder @since 1.0.0
 define('WPDRAUGIEMURL', plugin_dir_url(__FILE__));
@@ -208,8 +208,9 @@ function wpdr_update_data(){
 
 
 add_action('wp_footer', 'wpdr_update_olddata');
-
 /* --------------------------- end 1.5.0 --------------------------- */
+function wpdr_head_generator(){ echo "\n<!-- WordPress Draugiem ".WPDRAUGIEMV." by Rolands Umbrovskis | http://mediabox.lv/wordpress-draugiem/ -->\n".'<meta name="generator" content="WordPress Draugiem by Rolands Umbrovskis" />'."\n<!-- WordPress Draugiem  ".WPDRAUGIEMV."  by Rolands Umbrovskis -->\n"; }
+add_filter('wp_head', 'wpdr_head_generator',2); // location general @since 1.5.1
 
 include_once(WPDRAUGIEM.'/admin/autoload_admin.php');
 

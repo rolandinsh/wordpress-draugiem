@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=Z4ALL
 Tags: sidebar, widget, frype, draugiem.lv, draugiem, fan page, frype.com, JSON, WPMU, WordPress Mustisite, WordPress MU, WPMS, social networking, social network, share, frype, ieteikt, ieteikt draugiem,
 Requires at least: 2.6
 Tested up to: 3.4
-Stable tag: 1.5.0
+Stable tag: 1.5.1
 
 WordPress plugin for Latvian Social Network Draugiem.lv
 
@@ -24,6 +24,9 @@ WordPress spraudnis Draugiem.lv ieteikšanai. Poga tiek ievietota pirms raksta. 
 Apskaties arī [Draugiem.lv biznesa lapu sekotāju spraudnis](http://wordpress.org/extend/plugins/draugiemlvlapas-fan-page/)
 
 == Changelog ==
+
+= 1.5.1 =
+* pareizrakstība ir seksīga!
 
 = 1.5.0 =
 * Draugiem.lv API 
