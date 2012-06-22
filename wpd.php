@@ -1,9 +1,9 @@
 <?php 
 /**
  * Plugin Name: WordPress Draugiem
- * Plugin URI: http://mediabox.lv/wordpress-draugiem/?utm_source=wordpress&utm_medium=wpplugin&utm_campaign=WordPressDraugiem&utm_content=v-1-5-1-wp-draugiem_load_widgets
+ * Plugin URI: http://mediabox.lv/wordpress-draugiem/?utm_source=wordpress&utm_medium=wpplugin&utm_campaign=WordPressDraugiem&utm_content=v-1-5-2-wp-draugiem_load_widgets
  * Description: WordPress plugin for Latvian Social Network Draugiem.lv
- * Version: 1.5.1
+ * Version: 1.5.2
  * Requires at least: 2.6
  * Author: Rolands Umbrovskis
  * Author URI: http://umbrovskis.com
@@ -12,17 +12,19 @@
 
 
 
-define('WPDRAUGIEMV','1.5.1'); // location general @since 1.0.0
+define('WPDRAUGIEMV','1.5.2'); // location general @since 1.0.0
 define('WPDRAUGIEM',dirname(__FILE__)); // location general @since 1.0.0
 define('WPDRAUGIEMF','wordpress-draugiem'); // location folder @since 1.0.0
 define('WPDRAUGIEMURL', plugin_dir_url(__FILE__));
 define('WPDRAUGIEMI',WPDRAUGIEMURL.'/img'); // Image location @since 1.0.0
 define('WPDWPORG','http://wordpress.org/extend/plugins/'.WPDRAUGIEMF); // Image location @since 1.0.0
 
+
 function wpdraugiem_init() {
   load_plugin_textdomain( 'wpdraugiem', false, dirname( plugin_basename( __FILE__ ) ). '/lang/'); 
 }
 add_action('init', 'wpdraugiem_init');
+
 // We will use this later ;)
 /* SMC WordPress Draugiem Class for later development
 * @todo make extendable class (OOP)
@@ -64,9 +66,8 @@ function smc_draugiem_say_content($content){
 	if($showsmcwpd=='on' && !$smcwpd_showfield){$paradit_smcwpd=1;}
 	if($showsmcwpd=='on' && $smcwpd_showfield=='1'){$paradit_smcwpd=1;}
 	if($showsmcwpd=='on' && $smcwpd_showfield=='0'){$paradit_smcwpd=0;}
-	
-	if($paradit_smcwpd==1):
-		if (!is_feed()) :
+	if (!is_feed()) :
+		if($paradit_smcwpd==1):
 			$posturl = urlencode(get_permalink($post->ID));
 			$posttitle = urlencode($post->post_title);
 			$smcwpd_ieteikt_location = get_option('smc_wpd_ieteikt_where');
@@ -83,11 +84,12 @@ function smc_draugiem_say_content($content){
 				return $content;
 			}
 			
+		else:
+			return $content;
 		endif;
-	else:
-		return $content;
-
 	endif;
+	
+	// return $content;
 }
 add_filter('the_content', 'smc_draugiem_say_content');
 
