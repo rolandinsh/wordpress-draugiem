@@ -19,7 +19,6 @@ define('WPDRAUGIEMURL', plugin_dir_url(__FILE__));
 define('WPDRAUGIEMI',WPDRAUGIEMURL.'/img'); // Image location @since 1.0.0
 define('WPDWPORG','http://wordpress.org/extend/plugins/'.WPDRAUGIEMF); // Image location @since 1.0.0
 
-
 function wpdraugiem_init() {
   load_plugin_textdomain( 'wpdraugiem', false, dirname( plugin_basename( __FILE__ ) ). '/lang/'); 
 }
