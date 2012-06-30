@@ -3,8 +3,8 @@ Contributors: rolandinsh
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=Z4ALL9WUMY3CL&lc=LV&item_name=Umbrovskis%2e%20WordPress%20plugins&item_number=002&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted
 Tags: sidebar, widget, frype, draugiem.lv, draugiem, fan page, frype.com, JSON, WPMU, WordPress Mustisite, WordPress MU, WPMS, social networking, social network, share, frype, ieteikt, ieteikt draugiem,
 Requires at least: 2.6
-Tested up to: 3.4
-Stable tag: 1.5.2
+Tested up to: 3.4.1
+Stable tag: 1.5.3
 
 WordPress plugin for Latvian Social Network Draugiem.lv
 
@@ -24,6 +24,9 @@ WordPress spraudnis Draugiem.lv ieteikšanai. Poga tiek ievietota pirms raksta. 
 Apskaties arī [Draugiem.lv biznesa lapu sekotāju spraudnis](http://wordpress.org/extend/plugins/draugiemlvlapas-fan-page/)
 
 == Changelog ==
+
+= 1.5.3 =
+* ieteikšanas burbulis.
 
 = 1.5.2 =
 * laboti gadījumi, kad saturs RSS nerādās pareizi.
@@ -75,6 +78,22 @@ There are no questions for now!
 
 
 == Upgrade Notice ==
+
+= 1.5.3 =
+* ieteikšanas burbulis.
+
+= 1.5.2 =
+* laboti gadījumi, kad saturs RSS nerādās pareizi.
+
+= 1.5.1 =
+* pareizrakstība ir seksīga!
+
+= 1.5.0 =
+* Draugiem.lv API 
+
+= 1.4.0 =
+* Saraksts ar ieteiktajām ziņām no draugiem
+* shortcode [ieteikumusaraksts]
 
 = 1.3.0 =
 * shortcode [ieteiktdraugiem]

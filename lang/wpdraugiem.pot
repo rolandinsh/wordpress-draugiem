@@ -53,5 +53,19 @@ msgstr ""
 msgid "Show on this page"
 msgstr ""
 
+msgid "Show on all pages and posts"
+msgstr ""
+
+msgid "Appearance"
+msgstr ""
+
+msgid "Standart"
+msgstr ""
+
+msgid "Bubble"
+msgstr ""
+
+
+
 
 

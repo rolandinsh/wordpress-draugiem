@@ -8,6 +8,8 @@ function smc_wpd_admin_menu() {
 
 	register_setting( 'smc-wpd-settings', 'smc_wpd_ieteikt_all' );
 	register_setting( 'smc-wpd-settings', 'smc_wpd_ieteikt_where' );
+	register_setting( 'smc-wpd-settings', 'smc_wpd_ieteikt_look' );
+	
 
 }
 
@@ -19,13 +21,15 @@ function smcwpd_settings(){
 <?php settings_fields( 'smc-wpd-settings' );
 $smc_wpd_ieteikt_all = get_option('smc_wpd_ieteikt_all');
 $smc_wpd_ieteikt_where = get_option('smc_wpd_ieteikt_where');
+$smc_wpd_ieteikt_look = get_option('smc_wpd_ieteikt_look');
 // dev
 // var_dump($smc_wpd_ieteikt_all); 
 ?>
 <table class="form-table table">
 	<tr>
-		<th valign="top">Rādīt visās lapās un rakstos</th>
+		<th valign="top"><?php _e('Show on all pages and posts','wpdraugiem');?></th>
 		<td valign="top"><input type="checkbox" id="smc_wpd_ieteikt_all" name="smc_wpd_ieteikt_all" <?php checked($smc_wpd_ieteikt_all,'on') ?> /></td>
+        <td valign="top"><?php _e('Appearance','wpdraugiem');?></td>
 	</tr>
 	<tr>
 		<th valign="top"><?php _e('Start / End','wpdraugiem');?></th>
@@ -36,12 +40,28 @@ $smc_wpd_ieteikt_where = get_option('smc_wpd_ieteikt_where');
     <option value="3" <?php selected( $smc_wpd_ieteikt_where, 3 ); ?>><?php _e('Start and End','wpdraugiem');?></option>
 </select>
         </td>
+        <td valign="top">
+<select name="smc_wpd_ieteikt_look">
+    <option value="1" <?php selected( $smc_wpd_ieteikt_look, 1 ); ?>><?php _e('Standart','wpdraugiem');?></option>
+    <option value="2" <?php selected( $smc_wpd_ieteikt_look, 2 ); ?>><?php _e('Bubble','wpdraugiem');?></option>
+</select>
+        </td>
 	</tr>
+    <tr>
+    	<td colspan="3">
+        <p>MediaBox.lv - WordPress mājas lapu izstrāde</p>
+
+<div class="g-plusone" data-size="tall" data-annotation="inline" data-href="http://mediabox.lv/"></div>
+
+<iframe height="20" width="84" frameborder="0" src="http://www.draugiem.lv/say/ext/like.php?title=<?php echo urlencode('MediaBox.lv - WordPress mājas lapu izstrāde | Umbrovskis.com');?>&amp;url=<?php echo urlencode('http://mediabox.lv/')?>&amp;titlePrefix=<?php echo urlencode(get_bloginfo('name'));?>"></iframe>
+        </td>
+    </tr>
  </table>
     <p class="submit">
     <input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>" />
     </p>
 </form>
+<script type="text/javascript" src="https://apis.google.com/js/plusone.js">{lang: 'lv'}</script>
 </div><?php } // smcwpd_settings()
 
 
@@ -67,6 +87,7 @@ function smcwpd_help(){
 <p><strong>GIT</strong></p>
 <p>Svaigākā darba kopija: <a href="http://e-art.lv/x/wpdgitp" target="_blank">https://github.com/rolandinsh/wordpress-draugiem</a><br />
 <code>git://github.com/rolandinsh/wordpress-draugiem.git</code>
+
 </div><?php } // jic_settings_page()
 
 // -------------------------------
@@ -219,3 +240,14 @@ function smc_wpd_save_postmetadata( $post_id ) {
   update_post_meta($post_id, 'smcwpd_showfield', $smcwpd_postdata); // location general @since 1.2.1
   //
 }
+
+/* ------------------------------ 1.5.3 ------------------------------- */
+
+
+function smc_draugiem_say_headinit() {
+	if( !is_admin()){
+		wp_register_script('draugiem_api','http://www.draugiem.lv/api/api.js',array(),'1.1158', false);
+		wp_enqueue_script('draugiem_api');
+	}
+}    
+add_action('init', 'smc_draugiem_say_headinit');
