@@ -3,7 +3,7 @@
  * Plugin Name: WordPress Draugiem
  * Plugin URI: http://mediabox.lv/wordpress-draugiem/?utm_source=wordpress&utm_medium=wpplugin&utm_campaign=WordPressDraugiem&utm_content=v-1-5-3-1-wp-draugiem_load_widgets
  * Description: WordPress plugin for Latvian Social Network Draugiem.lv
- * Version: 1.5.3.1
+ * Version: 1.5.3.2
  * Requires at least: 2.6
  * Tested up to: 3.4.1
  * Author: Rolands Umbrovskis
@@ -52,7 +52,6 @@ function smcwpd_set_plugin_meta($links, $file) {
 	}
 	return $links;
 }
-
 add_filter( 'plugin_row_meta', 'smcwpd_set_plugin_meta', 10, 2 );
 
 function smc_draugiem_say_content($content){
@@ -104,9 +103,10 @@ function smc_draugiem_say_content($content){
 		else:
 			return $content;
 		endif;
+	else:return $content;
 	endif;
 	
-	// return $content;
+	
 }
 add_filter('the_content', 'smc_draugiem_say_content');
 
