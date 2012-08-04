@@ -103,7 +103,8 @@ function smc_draugiem_say_content($content){
 		else:
 			return $content;
 		endif;
-	else:return $content;
+	else:
+		return $content;
 	endif;
 	
 	
