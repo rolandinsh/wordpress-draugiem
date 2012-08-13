@@ -246,7 +246,7 @@ function smc_wpd_save_postmetadata( $post_id ) {
 
 function smc_draugiem_say_headinit() {
 	if( !is_admin()){
-		wp_register_script('draugiem_api','http://www.draugiem.lv/api/api.js',array(),'1.1158', false);
+		wp_register_script('draugiem_api',DRAUGIEMJSAPI,array(),'1.225', false);
 		wp_enqueue_script('draugiem_api');
 	}
 }    

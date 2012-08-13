@@ -1,24 +1,31 @@
 <?php 
 /**
  * Plugin Name: WordPress Draugiem
- * Plugin URI: http://mediabox.lv/wordpress-draugiem/?utm_source=wordpress&utm_medium=wpplugin&utm_campaign=WordPressDraugiem&utm_content=v-1-5-3-2-wp-draugiem_load_widgets
+ * Plugin URI: http://mediabox.lv/wordpress-draugiem/?utm_source=wordpress&utm_medium=wpplugin&utm_campaign=WordPressDraugiem&utm_content=v-1-5-4-1-wp-draugiem_load_widgets
  * Description: WordPress plugin for Latvian Social Network Draugiem.lv
- * Version: 1.5.3.2
+ * Version: 1.5.4.1
  * Requires at least: 2.6
  * Tested up to: 3.4.1
  * Author: Rolands Umbrovskis
  * Author URI: http://umbrovskis.com
- * License: GPL
+ * License: simplemediacode
+ * License URI: http://simplemediacode.com/license/
  */
 
 
 
-define('WPDRAUGIEMV','1.5.3.2'); // location general @since 1.0.0
+define('WPDRAUGIEMV','1.5.4'); // location general @since 1.0.0
 define('WPDRAUGIEM',dirname(__FILE__)); // location general @since 1.0.0
 define('WPDRAUGIEMF','wordpress-draugiem'); // location folder @since 1.0.0
 define('WPDRAUGIEMURL', plugin_dir_url(__FILE__));
 define('WPDRAUGIEMI',WPDRAUGIEMURL.'/img'); // Image location @since 1.0.0
 define('WPDWPORG','http://wordpress.org/extend/plugins/'.WPDRAUGIEMF); // Image location @since 1.0.0
+
+if (!defined('DRAUGIEMJSAPI')) {
+	$ishttpsurl = (!empty($_SERVER['HTTPS'])) ? "https:" : "http:";  // fixx https @since 1.5.4.1
+	define('DRAUGIEMJSAPI',$ishttpsurl.'//www.draugiem.lv/api/api.js');
+} // unified constants across plugins @since 1.5.4
+
 
 
 function wpdraugiem_init() {
@@ -42,9 +49,9 @@ function smcwpd_set_plugin_meta($links, $file) {
 	if ($file == $plugin) {
 		return array_merge( $links, array( 
 
-			'<a href="http://atbalsts.mediabox.lv/diskusija/wordpress-darugiem-atbalsts/">' . __('Support Forum','wpdraugiem') . '</a>',
-			'<a href="http://atbalsts.mediabox.lv/diskusija/wordpress-darugiem-atbalsts/#new-post">' . __('Feature request') . '</a>',
-			'<a href="http://atbalsts.mediabox.lv/wiki/WordPress_Draugiem">' . __('Wiki page') . '</a>',
+			//'<a href="http://atbalsts.mediabox.lv/diskusija/wordpress-darugiem-atbalsts/">' . __('Support Forum','wpdraugiem') . '</a>',
+			//'<a href="http://atbalsts.mediabox.lv/diskusija/wordpress-darugiem-atbalsts/#new-post">' . __('Feature request') . '</a>',
+			//'<a href="http://atbalsts.mediabox.lv/wiki/WordPress_Draugiem">' . __('Wiki page') . '</a>',
 			//'<a href="http://darbi.mediabox.lv/draugiem-lvlapas-fanu-wordpress-spraudnis/">www</a>',
 			'<a href="http://umbrovskis.com/ziedo/">' . __('Donate') . '</a>'
 			// ,'<a href="http://umbrovskis.com/">Umbrovskis.com</a>'
