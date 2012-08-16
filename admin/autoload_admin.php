@@ -242,12 +242,17 @@ function smc_wpd_save_postmetadata( $post_id ) {
 }
 
 /* ------------------------------ 1.5.3 ------------------------------- */
-
-
-function smc_draugiem_say_headinit() {
-	if( !is_admin()){
-		wp_register_script('draugiem_api',DRAUGIEMJSAPI,array(),'1.225', false);
-		wp_enqueue_script('draugiem_api');
+if ( !function_exists( 'smc_is_login_page' ) ) {
+	function smc_is_login_page() {
+		return in_array($GLOBALS['pagenow'], array('wp-login.php', 'wp-register.php'));
 	}
-}    
-add_action('init', 'smc_draugiem_say_headinit');
+}
+if ( !function_exists( 'smc_draugiem_say_headinit' ) ) {
+	function smc_draugiem_say_headinit() {
+		if( !is_admin()&&!smc_is_login_page()){
+			wp_register_script('draugiem_api',DRAUGIEMJSAPI,array(),'1.232', false);
+			wp_enqueue_script('draugiem_api');
+		}
+	}
+	add_action('init', 'smc_draugiem_say_headinit');
+}
