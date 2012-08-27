@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=Z4ALL
 Tags: sidebar, widget, frype, draugiem.lv, draugiem, fan page, frype.com, JSON, WPMU, WordPress Mustisite, WordPress MU, WPMS, social networking, social network, share, frype, ieteikt, ieteikt draugiem,
 Requires at least: 2.6
 Tested up to: 3.4.1
-Stable tag: 1.5.4.1
+Stable tag: 1.5.5
 License: simplemediacode
 License URI: http://simplemediacode.com/license/gpl/
 
