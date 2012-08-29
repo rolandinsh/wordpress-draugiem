@@ -1,128 +1,102 @@
-﻿=== Draugiem.lv biznesa lapu sekotāju spraudnis ===
+﻿=== ieteikt Draugiem WordPress spraudnis ===
 Contributors: rolandinsh
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=Z4ALL9WUMY3CL&lc=LV&item_name=Umbrovskis%2e%20WordPress%20plugins&item_number=002&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted
-Tags: sidebar, widget, frype, draugiem.lv, draugiem, fan page, frype.com, JSON, WPMU, WordPress Mustisite, WordPress MU, WPMS, draugiem, social networking, social network, fan widget, sidebar widget,
+Tags: sidebar, widget, frype, draugiem.lv, draugiem, fan page, frype.com, JSON, WPMU, WordPress Mustisite, WordPress MU, WPMS, social networking, social network, share, frype, ieteikt, ieteikt draugiem,
 Requires at least: 2.6
 Tested up to: 3.4.1
-Stable tag: 2.2.3
-License: SimpleMediaCode
-License URI: http://simplemediacode.com/license/
+Stable tag: 1.5.5
+License: simplemediacode
+License URI: http://simplemediacode.com/license/gpl/
 
-Draugiem.lv biznesa lapu un pasākumu fanu WordPress spraudnis draugiem.lv lietotājiem
+WordPress plugin for Latvian Social Network Draugiem.lv
 
 == Description ==
 
-[Draugiem.lv biznesa lapu fanu WordPress spraudnis](http://mediabox.lv/wordpress-spraudni/draugiem-lv-biznesa-lapu-fanu-wordpress-spraudnis/) ir paredzēts tiem draugiem.lv/lapas īpašniekiem, kuriem ir mājas lapas vai blogs ir veidots uz WordPress platformas. WordPress spraudnis parāda draugiem.lv/lapas nosaukumu, aprakstu, lietotājus, to skaitu, logo un iespēju kļūt par lapas fanu.
+WordPress plugin for Latvian Social Network Draugiem.lv. Add "share" button before, after or in middle of content
 
-Visi jaunumi par šo spraudni atrodami [MediaBox.lv Darbos](http://darbi.mediabox.lv/tag/draugiem-lvlapas-fanu-lapa/)
+WordPress spraudnis Draugiem.lv ieteikšanai. Poga tiek ievietota pirms raksta. **[WordPress Draugiem](http://mediabox.lv/wordpress-draugiem/)** tiks laika gaitā papildināts arī ar citiem draugiem.lv risinājumiem inteneta mājas lapā. Šis ir tikai pirmais solis.
 
-Lai lietotu spraudni ir jābūt izveidotai savai lapai [draugiem.lv/lapas](http://e-art.lv/x/draugiemlapas).
+= Nākotnē =
+* Uzlabota ieteikšanas poga
+* Draugiem.lv pases integrēšana caur API
+* diskusijām.lv iekļaušana (ja būs interese)
+* Plašāka draugiem.lv API izmantošana (pasākumi, lapas). Cik vien tas būs iespējams caur vienu aplikāciju.
+* Spraudņa lietošanas statistika (pēc izvēles)
 
-[GIT](https://github.com/rolandinsh/draugiem-lapas-sekotaji) | code.google.com [SVN](http://code.google.com/p/wordpress-draugiem-lapas-fani-plugin/) | [draugiem.lv/UmbrovskisCom](http://www.draugiem.lv/umbrovskiscom/)
-
-PS. Apskati [WordPress Draugiem "ieteikšanu"](http://wordpress.org/extend/plugins/wordpress-draugiem/)
-
-= Iespējas =
-
-* Tulkot vairākās valodās
-* Dot logdaļai nosaukumu, platumu un noteikt sekotāju skaitu
-* Ievietot jebkurā rakstā vai lapā
-
-= Latviski: =
-* [Draugiem.lv biznesa lapu sekotāju spraudnis](http://mediabox.lv/wordpress-spraudni/draugiem-lv-biznesa-lapu-fanu-wordpress-spraudnis/) latviski.
-* Apskaties citus [Wordpress risinājumus](http://mediabox.lv/wordpress/).
-* [Spraudņa Wiki lapa](http://atbalsts.mediabox.lv/wiki/Draugiem.lv_biznesa_lapu_fanu_Wordpress_spraudnis)
-
-= English =
-
-This plugin makes it easy to add draugiem.lv/lapas (frype.com) fan page to sidebar of WordPress blog.
-
-You `MUST` have a page on draugiem.lv/lapas to use this widget.
-
-= Features =
-
-* '''In Your language'''. Defaults: '''English''' and '''Latvian''' (Since 0.1.2)
-* Widget title
-* Fan count
-* widget width
-* shortcode
-
-* [Draugiem.lv Business page Followers page](http://simplemediacode.info/wordpress-plugins/draugiem-lv-lapas-fan-page/).
-* Other [WordPress plugins](http://simplemediacode.info/wordpress-plugins/) by `Umbrovskis.com` on SimpleMediaCode.com (English).
+Apskaties arī [Draugiem.lv biznesa lapu sekotāju spraudnis](http://wordpress.org/extend/plugins/draugiemlvlapas-fan-page/)
 
 == Changelog ==
 
-= 2.2.2 =
-* javascript api netiks ielādēts reģistrācijas un autorizācijas lapās.
-* WIKI informācija par [2.2.2 versiju](http://atbalsts.mediabox.lv/wiki/Draugiem.lv_biznesa_lapu_fanu_Wordpress_spraudnis#2.2.2)
+= 1.5.4.1 =
+* uzlabots http vai https, joprojām AR ptotokola prefiksu
 
-= 2.2.1 =
-* Romanian laguage via Web Hosting Geeks / Alexander Ovsov
-* Rumāņu valodas tulkojums via Web Hosting Geeks / Alexander Ovsov
-* WIKI informācija par [2.2.1 versiju](http://atbalsts.mediabox.lv/wiki/Draugiem.lv_biznesa_lapu_fanu_Wordpress_spraudnis#2.2.1)
+= 1.5.4 =
+* bez http vai https
 
-= 2.2 =
-* pievienots Pasākumu sekotāju logdaļa
-* pievienots `[frypevent]` un `[frypeevent]` 
-* WIKI informācija par [2.2 versiju](http://atbalsts.mediabox.lv/wiki/Draugiem.lv_biznesa_lapu_fanu_Wordpress_spraudnis#2.2)
+= 1.5.3.2 =
+* nelieli labojumi saistībā ar RSS
 
-= 2.1 =
-* Beidzot arī esam pieminēti [draugiem.lv ar šo biznesa lapu spraudni](http://e-art.lv/x/oN)
-* Var ievietot jebkurā lapā, ka saturu izmantojot `shortcode` `[frypefans]`
-* [Atbalsta forums](http://atbalsts.mediabox.lv/diskusija/draugiem-lv-biznesa-lapu-wordpress-spraudnis/)
-* WIKI informācija par [2.1 versiju](http://atbalsts.mediabox.lv/wiki/Draugiem.lv_biznesa_lapu_fanu_Wordpress_spraudnis#2.1)
+= 1.5.3.1 =
+* pa naktīm strādājot pieļautas dažas neuzmanības kļūdas
 
-= 2.0 =
-* Pēdējais uzlabojums
-* draugiem.lv RUNĀ (jaunums)
-* Atjaunotas visas iespējas: sekotāju skaits, nosaukums, rādīt/nerādīt sekotājus un/vai RUNĀ ierakstus
-* Atjaunotas visas iespējas: sekotāju skaits, nosaukums, draugiem.lv RUNĀ (jaunums), rādīt/nerādīt sekotājus un/vai RUNĀ ierakstus
-* WIKI informācija par [2.0 versiju](http://atbalsts.mediabox.lv/wiki/Draugiem.lv_biznesa_lapu_fanu_Wordpress_spraudnis#2.0)
-* Tālākai attīstībai, kods izlikts [Google Code](http://e-art.lv/x/rs)
+= 1.5.3 =
+* ieteikšanas burbulis.
 
-= vēsture =
-* [vecākas versijas](http://atbalsts.mediabox.lv/wiki/Draugiem.lv_biznesa_lapu_fanu_Wordpress_spraudnis)
+= 1.5.2 =
+* laboti gadījumi, kad saturs RSS nerādās pareizi.
+
+= 1.5.1 =
+* pareizrakstība ir seksīga!
+
+= 1.5.0 =
+* Draugiem.lv API 
+
+= 1.4.0 =
+* Saraksts ar ieteiktajām ziņām no draugiem
+* shortcode [ieteikumusaraksts]
+
+= 1.3.0 =
+* shortcode [ieteiktdraugiem]
+
+= 1.2.1 =
+* `add_post_meta()` vietā tiks izmantots `update_post_meta()`
+
+= 1.2.0 =
+* pogas pieslēgšana/atslēgšana atsevišķiem rakstiem un lapām
+
+= 1.1.0 =
+* ieteikt poga arī lapām
+* pogas novietojums raksta/lapas: sākumā, beigās, sākumā un beigās
+
+= 1.0.0 =
+* Initial release
 
 == More info ==
 
-* To check out the other WordPress plugins I wrote, check out my [WordPress](http://simplemediacode.com/wordpress/) or [BuddyPress](http://simplemediacode.com/buddypress/) pages.
+* Vairāk informācijas [WordPress Draugiem](http://mediabox.lv/wordpress-draugiem/) mājas lapā.
 
 == Installation ==
 
-Installation:
+Uzstādīšana:  [codex.wordpress.org/Managing_Plugins#Installing_Plugins](http://e-art.lv/x/installwpplugin)
 
-* Download the plugin.
-* Copy the `draugiemlvlapas-fan-page` folder to the plugins directory of your blog.
-* Enable the plugin in your admin panel.
-* An options panel will appear under Widgets.
-* Add fanpage URL or event ID and enjoy!
+* lejupielādē spraudni
+* atarhivē un ielādē serverī WordPress spraudņu mapē
+* aktivizē spraudni
+* gatavs
 
-= Dokumentācija  =
-WIKI: [Draugiem.lv biznesa lapu fanu Wordpress spraudnis](http://atbalsts.mediabox.lv/wiki/Draugiem.lv_biznesa_lapu_fanu_Wordpress_spraudnis)
+Installation: [codex.wordpress.org/Managing_Plugins#Installing_Plugins](http://e-art.lv/x/installwpplugin)
 
 == Frequently Asked Questions ==
+There are no questions for now!
 
-You can always ask in comments: [Draugiem.lv/lapas Fan page](http://simplemediacode.info/wordpress-plugins/draugiem-lv-lapas-fan-page/) on SimpleMediaCode.com.
 
-Visi jautājumi var tikt uzdoti: [Draugiem.lv biznesa lapu sektāju atbalsta lapā](http://atbalsts.mediabox.lv/diskusija/draugiem-lv-biznesa-lapu-wordpress-spraudnis/#new-post).
 
 == Upgrade Notice ==
 
-= 2.2.2 =
-.ro language
-
-= 2.2.1 =
-.ro language
-
-= 2.2 =
-Pasākumu sekotāju logdaļa (widget)
-
-= 2.1 =
-New shortcode
-
-= 2.0 =
-New makeover
+= 1.5.4.1 =
+* uzlabots http vai https, joprojām AR ptotokola prefiksu
 
 == Screenshots ==
-1. 2.0 Full futured example http://darbi.mediabox.lv/tag/draugiem-lvlapas-fanu-lapa/
-2. 2.0 Full futured admin side widget example http://darbi.mediabox.lv/tag/draugiem-lvlapas-fanu-lapa/
+
+1. Content http://mediabox.lv/wordpress-draugiem/
+1. Admin http://mediabox.lv/wordpress-draugiem/

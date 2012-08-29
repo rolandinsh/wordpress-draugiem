@@ -1,0 +1,67 @@
+# Translation of WordPress Draugiem.
+# Copyright (C) 2010 Rolands Umbrovskis
+# This file is distributed under the same license as the BuddyPress package.
+# Rolands Umbrovskis <rolands@mediabox.lv>, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: wpdraugiem\n"
+"Report-Msgid-Bugs-To: webapp@mediabox.lv\n"
+"POT-Creation-Date: 2010-03-10 06:11+0000\n"
+"PO-Revision-Date: 2012-06-30 03:05+0200\n"
+"Last-Translator: rolandinsh <rolands@mediabox.lv>\n"
+"Language-Team: Latvian <rolands@mediabox.lv>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Latvian\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2);\n"
+
+msgid "Support Forum"
+msgstr "Atbalsta forums"
+
+msgid "Feature request"
+msgstr "Papildinājumu ieteikšana"
+
+msgid "Wiki page"
+msgstr "Wiki lapa"
+
+msgid "Donate"
+msgstr "Ziedot"
+
+msgid "WordPress Draugiem"
+msgstr "WordPress Draugiem"
+
+msgid "WP Draugiem"
+msgstr "WP Draugiem"
+
+msgid "Start / End"
+msgstr "Sākumā / Beigās"
+
+msgid "Start"
+msgstr "sākumā"
+
+msgid "End"
+msgstr "beigās"
+
+msgid "Start and End"
+msgstr "sākumā un beigās"
+
+msgid "Draugiem.lv/say"
+msgstr "Draugiem runā"
+
+msgid "Show on this page"
+msgstr "Rādīt šajā lapā"
+
+msgid "Show on all pages and posts"
+msgstr "Rādīt visās lapās un rakstos"
+
+msgid "Appearance"
+msgstr "Izskats"
+
+msgid "Standart"
+msgstr "Standarta"
+
+msgid "Bubble"
+msgstr "Burbulis"
+

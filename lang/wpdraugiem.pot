@@ -1,0 +1,71 @@
+# Translation of WordPress Draugiem.
+# Copyright (C) 2010 Rolands Umbrovskis
+# This file is distributed under the same license as the BuddyPress package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: wpdraugiem\n"
+"Report-Msgid-Bugs-To: webapp@mediabox.lv\n"
+"POT-Creation-Date: 2010-03-10 06:11+0000\n"
+"PO-Revision-Date: 2010-03-11 11:01+0200\n"
+"Last-Translator: rolandinsh <rolands@e-art.lv>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Latvian\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2);\n"
+
+msgid "Support Forum"
+msgstr ""
+
+msgid "Feature request"
+msgstr ""
+
+msgid "Wiki page"
+msgstr ""
+
+msgid "Donate"
+msgstr ""
+
+msgid "WordPress Draugiem"
+msgstr ""
+
+msgid "WP Draugiem"
+msgstr ""
+
+msgid "Start / End"
+msgstr ""
+
+msgid "Start"
+msgstr ""
+
+msgid "End"
+msgstr ""
+
+msgid "Start and End"
+msgstr ""
+
+msgid "Draugiem.lv/say"
+msgstr ""
+
+msgid "Show on this page"
+msgstr ""
+
+msgid "Show on all pages and posts"
+msgstr ""
+
+msgid "Appearance"
+msgstr ""
+
+msgid "Standart"
+msgstr ""
+
+msgid "Bubble"
+msgstr ""
+
+
+
+
+
