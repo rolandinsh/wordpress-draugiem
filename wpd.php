@@ -12,8 +12,6 @@
  * License URI: http://simplemediacode.com/license/
  */
 
-
-
 define('WPDRAUGIEMV','1.5.5'); // location general @since 1.0.0
 define('WPDRAUGIEM',dirname(__FILE__)); // location general @since 1.0.0
 define('WPDRAUGIEMF','wordpress-draugiem'); // location folder @since 1.0.0
