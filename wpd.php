@@ -22,7 +22,7 @@ define('WPDRAUGIEMI',WPDRAUGIEMURL.'/img'); // Image location @since 1.0.0
 define('WPDWPORG','http://wordpress.org/extend/plugins/'.WPDRAUGIEMF); // Image location @since 1.0.0
 
 if (!defined('DRAUGIEMJSAPI')) {
-	$ishttpsurl = (!empty($_SERVER['HTTPS'])) ? "https:" : "http:";  // fixx https @since 1.5.4.1
+	$ishttpsurl = is_ssl() ? 'https:' : 'http:';  // fixx https @since 1.5.4.1
 	define('DRAUGIEMJSAPI',$ishttpsurl.'//www.draugiem.lv/api/api.js');
 } // unified constants across plugins @since 1.5.4
 
