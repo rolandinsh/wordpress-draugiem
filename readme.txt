@@ -3,8 +3,8 @@ Contributors: rolandinsh
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=Z4ALL9WUMY3CL&lc=LV&item_name=Umbrovskis%2e%20WordPress%20plugins&item_number=002&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted
 Tags: sidebar, widget, frype, draugiem.lv, draugiem, fan page, frype.com, JSON, WPMU, WordPress Mustisite, WordPress MU, WPMS, social networking, social network, share, frype, ieteikt, ieteikt draugiem,
 Requires at least: 2.6
-Tested up to: 3.4.1
-Stable tag: 1.5.5
+Tested up to: 3.5.1
+Stable tag: 1.5.6
 License: simplemediacode
 License URI: http://simplemediacode.com/license/gpl/
 
@@ -26,6 +26,9 @@ WordPress spraudnis Draugiem.lv ieteikšanai. Poga tiek ievietota pirms raksta. 
 Apskaties arī [Draugiem.lv biznesa lapu sekotāju spraudnis](http://wordpress.org/extend/plugins/draugiemlvlapas-fan-page/)
 
 == Changelog ==
+
+= 1.5.6 =
+* izlabots: ja nav neviena ieteikuma, nerāda kļūdu.
 
 = 1.5.4.1 =
 * uzlabots http vai https, joprojām AR ptotokola prefiksu
@@ -92,6 +95,9 @@ There are no questions for now!
 
 
 == Upgrade Notice ==
+
+= 1.5.6 =
+* izlabots: ja nav neviena ieteikuma, nerāda kļūdu.
 
 = 1.5.4.1 =
 * uzlabots http vai https, joprojām AR ptotokola prefiksu

@@ -1,11 +1,11 @@
 <?php 
 /**
  * Plugin Name: WordPress Draugiem
- * Plugin URI: http://mediabox.lv/wordpress-draugiem/?utm_source=wordpress&utm_medium=wpplugin&utm_campaign=WordPressDraugiem&utm_content=v-1-5-5-wp-draugiem_load_widgets
+ * Plugin URI: http://mediabox.lv/wordpress-draugiem/?utm_source=wordpress&utm_medium=wpplugin&utm_campaign=WordPressDraugiem&utm_content=v-1-5-6-wp-draugiem_load_widgets
  * Description: WordPress plugin for Latvian Social Network Draugiem.lv
- * Version: 1.5.5
+ * Version: 1.5.6
  * Requires at least: 2.6
- * Tested up to: 3.4.1
+ * Tested up to: 3.5.1
  * Author: Rolands Umbrovskis
  * Author URI: http://umbrovskis.com
  * License: simplemediacode
@@ -14,7 +14,7 @@
 
 
 
-define('WPDRAUGIEMV','1.5.5'); // location general @since 1.0.0
+define('WPDRAUGIEMV','1.5.6'); // location general @since 1.0.0
 define('WPDRAUGIEM',dirname(__FILE__)); // location general @since 1.0.0
 define('WPDRAUGIEMF','wordpress-draugiem'); // location folder @since 1.0.0
 define('WPDRAUGIEMURL', plugin_dir_url(__FILE__));
@@ -52,7 +52,7 @@ function smcwpd_set_plugin_meta($links, $file) {
 			//'<a href="http://atbalsts.mediabox.lv/diskusija/wordpress-darugiem-atbalsts/">' . __('Support Forum','wpdraugiem') . '</a>',
 			//'<a href="http://atbalsts.mediabox.lv/diskusija/wordpress-darugiem-atbalsts/#new-post">' . __('Feature request') . '</a>',
 			//'<a href="http://atbalsts.mediabox.lv/wiki/WordPress_Draugiem">' . __('Wiki page') . '</a>',
-			//'<a href="http://darbi.mediabox.lv/draugiem-lvlapas-fanu-wordpress-spraudnis/">www</a>',
+			'<a href="http://mediabox.lv/wordpress-draugiem/">www</a>',
 			'<a href="http://umbrovskis.com/ziedo/">' . __('Donate') . '</a>'
 			// ,'<a href="http://umbrovskis.com/">Umbrovskis.com</a>'
 		));
@@ -196,27 +196,27 @@ function wpdr_update_data(){
 			}else{
 				$api_hitr++;
 				$draugiem_api_say_results = wp_remote_get("http://www.draugiem.lv/say/ext/like_count.php?url=" . get_permalink());
-				$post_ieteiktic = json_decode($draugiem_api_say_results["body"]);
-
-				$post_ieteikti = $post_ieteiktic->count;
-
-				if (is_numeric($post_ieteikti)){
-
-					$this_cache_time = $cache_time + rand(60*1, 60*25);
-					set_transient($wpdrtrans_base."_dr_saids", $post_ieteikti, $this_cache_time);
-					update_post_meta(get_the_ID(), "_wpdr_dr_saids", $post_ieteikti);
-
-				}else{
-					$post_ieteikti = intval(get_post_meta(get_the_ID(), "_wpdr_dr_saids", true));
-					set_transient($wpdrtrans_base."_dr_saids", $post_ieteikti, 60*60*6);
+/*
+If there are no likes/shares
+@since 1.5.6
+*/
+				if(!is_wp_error( $draugiem_api_say_results )){
+					$post_ieteiktic = json_decode($draugiem_api_say_results["body"]);
+					$post_ieteikti = $post_ieteiktic->count;
+					if (is_numeric($post_ieteikti)){
+						$this_cache_time = $cache_time + rand(60*1, 60*25);
+						set_transient($wpdrtrans_base."_dr_saids", $post_ieteikti, $this_cache_time);
+						update_post_meta(get_the_ID(), "_wpdr_dr_saids", $post_ieteikti);
+					}else{
+						$post_ieteikti = intval(get_post_meta(get_the_ID(), "_wpdr_dr_saids", true));
+						set_transient($wpdrtrans_base."_dr_saids", $post_ieteikti, 60*60*6);
+					}
+					
+					$post_totals = 0;
+					$post_totals += intval($post_ieteikti);
+					update_post_meta(get_the_ID(), "_wpdr_total_shares", $post_totals);
 				}
-				
 			}
-
-			
-			$post_totals = 0;
-			$post_totals += intval($post_ieteikti);
-			update_post_meta(get_the_ID(), "_wpdr_total_shares", $post_totals);
 
 			if ($api_hitr > 14)
 				break;
