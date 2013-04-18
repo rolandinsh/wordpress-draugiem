@@ -65,7 +65,5 @@ msgstr ""
 msgid "Bubble"
 msgstr ""
 
-
-
-
-
+msgid "Icon"
+msgstr ""

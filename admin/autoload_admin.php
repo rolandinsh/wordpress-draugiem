@@ -44,6 +44,7 @@ $smc_wpd_ieteikt_look = get_option('smc_wpd_ieteikt_look');
 <select name="smc_wpd_ieteikt_look">
     <option value="1" <?php selected( $smc_wpd_ieteikt_look, 1 ); ?>><?php _e('Standart','wpdraugiem');?></option>
     <option value="2" <?php selected( $smc_wpd_ieteikt_look, 2 ); ?>><?php _e('Bubble','wpdraugiem');?></option>
+    <option value="3" <?php selected( $smc_wpd_ieteikt_look, 3 ); ?>><?php _e('Icon','wpdraugiem');?></option>
 </select>
         </td>
 	</tr>
@@ -61,6 +62,50 @@ $smc_wpd_ieteikt_look = get_option('smc_wpd_ieteikt_look');
     <input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>" />
     </p>
 </form>
+
+<hr />
+
+<link href="http://cdn-images.mailchimp.com/embedcode/classic-081711.css" rel="stylesheet" type="text/css">
+<style type="text/css">#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; }</style>
+<div id="mc_embed_signup">
+<form action="http://mediabox.us4.list-manage.com/subscribe/post?u=1abe03127f696c94c3027715d&amp;id=b0234d4827" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+
+<table class="form-table table">
+
+	<tr>
+		<td valign="top" colspan="2"><h2>Saņem autora jaunumus</h2>
+<div class="indicates-required"><span class="asterisk">*</span> apzīmē obligātos laukumus</div>
+<div class="mc-field-group">
+	<label for="mce-EMAIL">e-pasta adrese  <span class="asterisk">*</span></label>
+	<input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
+</div></td>
+	</tr>
+	<tr>
+		<td valign="top"><div class="mc-field-group input-group"><strong>Interesē </strong>
+    <ul>
+		<li><input type="checkbox" value="1" name="group[13853][1]" id="mce-group[13853]-13853-0"><label for="mce-group[13853]-13853-0">jauni produkti un pakalpojumi</label></li>
+		<li><input type="checkbox" value="2" name="group[13853][2]" id="mce-group[13853]-13853-1"><label for="mce-group[13853]-13853-1">jaunas iespējas</label></li>
+	</ul>
+</div></td>
+		<td valign="top">
+		<div class="mc-field-group input-group">
+    <strong>e-pasta formāts</strong>
+    <ul>
+		<li><input type="radio" value="html" name="EMAILTYPE" id="mce-EMAILTYPE-0"><label for="mce-EMAILTYPE-0">html</label></li>
+		<li><input type="radio" value="text" name="EMAILTYPE" id="mce-EMAILTYPE-1"><label for="mce-EMAILTYPE-1">teksts</label></li>
+		<li><input type="radio" value="mobile" name="EMAILTYPE" id="mce-EMAILTYPE-2"><label for="mce-EMAILTYPE-2">mobilajam telefonam</label></li>
+	</ul>
+</div></td>
+	</tr>
+ </table>
+	<div id="mce-responses" class="clear">
+		<div class="response" id="mce-error-response" style="display:none"></div>
+		<div class="response" id="mce-success-response" style="display:none"></div>
+	</div>	<div class="clear"><input type="submit" value="Abonēt" name="subscribe" id="mc-embedded-subscribe" class="button-primary"></div>
+</form>
+</div>
+
+
 <script type="text/javascript" src="https://apis.google.com/js/plusone.js">{lang: 'lv'}</script>
 </div><?php } // smcwpd_settings()
 
@@ -80,44 +125,17 @@ function smcwpd_help(){
 <p>Ja ir vēlma mainīt vairākus parametru, tos var apvienot, piem., <code>[ieteikumusaraksts domain="http://rolandinsh.lv" count="5"]</code> vai <code>[ieteikumusaraksts domain="http://rolandinsh.lv" count="5" id="man_cits_id"]</code> vai <code>[ieteikumusaraksts count="5" id="man_cits_id"]</code></p>
 
 <h2>Izstrādātājiem</h2>
+<!-- 
 <p><strong>SVN</strong></p>
 <p>Svaigākā darba kopija: <a href="http://e-art.lv/x/wpdgc" target="_blank">http://code.google.com/p/draugiem/source/checkout</a><br />
 <code>svn checkout <strong>http:</strong>//draugiem.googlecode.com/svn/trunk/ draugiem</code>
 </p>
+ -->
 <p><strong>GIT</strong></p>
 <p>Svaigākā darba kopija: <a href="http://e-art.lv/x/wpdgitp" target="_blank">https://github.com/rolandinsh/wordpress-draugiem</a><br />
 <code>git://github.com/rolandinsh/wordpress-draugiem.git</code>
 
-</div><?php } // jic_settings_page()
-
-// -------------------------------
-/*
- * Skati pie rakstiem un lapām
- * @todo will remove, if no complains
-*/
-/* 
-add_filter('manage_posts_columns', 'smc_draugiem_ieteikt_kol');
-add_filter('manage_pages_columns', 'smc_draugiem_ieteikt_kol');
-function smc_draugiem_ieteikt_kol($columns) {
-    $columns['smc_draugiem_ieteikt'] = __('Draugiem.lv/say','wpdraugiem');
-    return $columns;
-}
-
-add_action('manage_posts_custom_column',  'smc_draugiem_ieteikt_kshow');
-add_action('manage_pages_custom_column',  'smc_draugiem_ieteikt_kshow');
-function smc_draugiem_ieteikt_kshow($name) {
-    global $post;
-
-    switch ($name) {
-        case 'smc_draugiem_ieteikt':
-		$posturl = urlencode(get_permalink($post->ID));
-		$posttitle = urlencode($post->post_title);
-		$awesomeblog = urlencode(get_bloginfo('name'));
-		
-		echo '<iframe height="20" width="84" frameborder="0" src="http://www.draugiem.lv/say/ext/like.php?title='.$posttitle.'&amp;url='.$posturl.'&amp;titlePrefix='.$awesomeblog.'"></iframe>';
-    }
-}
-*/
+</div><?php }
 
 /*
  * Shares with Draugiem API
