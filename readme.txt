@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=Z4ALL
 Tags: sidebar, widget, frype, draugiem.lv, draugiem, fan page, frype.com, JSON, WPMU, WordPress Mustisite, WordPress MU, WPMS, social networking, social network, share, frype, ieteikt, ieteikt draugiem,
 Requires at least: 2.7
 Tested up to: 3.7.1
-Stable tag: 2.0.1
+Stable tag: 2.0.2
 License: simplemediacode
 License URI: http://simplemediacode.com/license/gpl/
 
@@ -16,6 +16,10 @@ WordPress plugin for Latvian Social Network Draugiem.lv. Add "share" button befo
 
 WordPress spraudnis Draugiem.lv ieteikšanai. Poga tiek ievietota pirms raksta. **[WordPress Draugiem](http://mediabox.lv/wordpress-draugiem/)** tiks laika gaitā papildināts arī ar citiem draugiem.lv risinājumiem inteneta mājas lapā. Šis ir tikai pirmais solis.
 
+== Translations ==
+
+* @2.0.1 Serbo-Croatian language from [Borisa Djuraskovic / webhostinghub.com](http://www.webhostinghub.com/)
+
 = Nākotnē =
 
 * Draugiem.lv pases integrēšana caur API
@@ -25,6 +29,8 @@ WordPress spraudnis Draugiem.lv ieteikšanai. Poga tiek ievietota pirms raksta. 
 
 Apskaties arī [Draugiem.lv biznesa lapu sekotāju spraudnis](http://wordpress.org/extend/plugins/draugiemlvlapas-fan-page/)
 
+
+
 = Noderīgas saites = 
 
 * Izstrādātāja mājas lapa [Umbrovskis.lv](http://umbrovskis.lv/)
@@ -32,6 +38,9 @@ Apskaties arī [Draugiem.lv biznesa lapu sekotāju spraudnis](http://wordpress.o
 * [WordPress mājas lapu un spraudņu izstrāde](http://mediabox.lv/)
 
 == Changelog ==
+
+= 2.0.2 =
+* credit to [Borisa Djuraskovic](http://www.webhostinghub.com/);
 
 = 2.0.1 =
 * serbu-horvātu valoda. Paldies Borisa Djuraskovic;
@@ -106,6 +115,9 @@ Installation: [codex.wordpress.org/Managing_Plugins#Installing_Plugins](http://e
 jautājumu nav.
 
 == Upgrade Notice ==
+
+= 2.0.2 =
+* credit to Borisa Djuraskovic;
 
 = 2.0.1 =
 * serbu-horvātu valoda. Paldies/Thanks Borisa Djuraskovic;
