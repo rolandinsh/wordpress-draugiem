@@ -3,8 +3,8 @@ Contributors: rolandinsh
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=Z4ALL9WUMY3CL&lc=LV&item_name=Umbrovskis%2e%20WordPress%20plugins&item_number=002&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted
 Tags: sidebar, widget, frype, draugiem.lv, draugiem, fan page, frype.com, JSON, WPMU, WordPress Mustisite, WordPress MU, WPMS, social networking, social network, share, frype, ieteikt, ieteikt draugiem,
 Requires at least: 2.7
-Tested up to: 3.7.1
-Stable tag: 2.0.2
+Tested up to: 3.8.1
+Stable tag: 2.1.0
 License: simplemediacode
 License URI: http://simplemediacode.com/license/gpl/
 
@@ -38,6 +38,9 @@ Apskaties arī [Draugiem.lv biznesa lapu sekotāju spraudnis](http://wordpress.o
 * [WordPress mājas lapu un spraudņu izstrāde](http://mediabox.lv/)
 
 == Changelog ==
+
+= 2.1.0 =
+* Shorcode with attributes
 
 = 2.0.2 =
 * credit to [Borisa Djuraskovic](http://www.webhostinghub.com/);
@@ -116,20 +119,8 @@ jautājumu nav.
 
 == Upgrade Notice ==
 
-= 2.0.2 =
-* credit to Borisa Djuraskovic;
-
-= 2.0.1 =
-* serbu-horvātu valoda. Paldies/Thanks Borisa Djuraskovic;
-
-= 2.0.0 =
-* pārkodēts. Iespējams labāks ;)
-
-= 1.5.6 =
-* izlabots: ja nav neviena ieteikuma, nerāda kļūdu.
-
-= 1.5.4.1 =
-* uzlabots http vai https, joprojām AR ptotokola prefiksu
+= 2.1.0 =
+* Shorcode with attributes
 
 == Screenshots ==
 

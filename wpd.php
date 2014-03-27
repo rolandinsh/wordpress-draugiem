@@ -3,9 +3,9 @@
  * Plugin Name: WordPress Draugiem
  * Plugin URI: http://mediabox.lv/wordpress-draugiem/?utm_source=wordpress&utm_medium=wpplugin&utm_campaign=WordPressDraugiem&utm_content=v-1-5-6-wp-draugiem_load_widgets
  * Description: WordPress plugin for Latvian Social Network Draugiem.lv
- * Version: 2.0.2
+ * Version: 2.1.0
  * Requires at least: 2.6
- * Tested up to: 3.7.1
+ * Tested up to: 3.8.1
  * Author: Rolands Umbrovskis
  * Author URI: http://umbrovskis.com
  * License: simplemediacode
@@ -14,7 +14,7 @@
 
 
 
-define('WPDRAUGIEMV','2.0.2'); // location general @since 1.0.0
+define('WPDRAUGIEMV','2.1.0'); // location general @since 1.0.0
 define('WPDRAUGIEM',dirname(__FILE__)); // location general @since 1.0.0
 define('WPDRAUGIEMF','wordpress-draugiem'); // location folder @since 1.0.0
 define('WPDRAUGIEMURL', plugin_dir_url(__FILE__));
@@ -22,7 +22,7 @@ define('WPDRAUGIEMI',WPDRAUGIEMURL.'/img'); // Image location @since 1.0.0
 define('WPDWPORG','http://wordpress.org/extend/plugins/'.WPDRAUGIEMF); // Image location @since 1.0.0
 
 if (!defined('DRAUGIEMJSAPI')) {
-	$ishttpsurl = is_ssl() ? 'https:' : 'http:';  // fixx https @since 1.5.4.1
+	$ishttpsurl = is_ssl() ? 'https:' : 'http:';  // fix https @since 1.5.4.1
 	define('DRAUGIEMJSAPI',$ishttpsurl.'//www.draugiem.lv/api/api.js');
 } // unified constants across plugins @since 1.5.4
 
@@ -52,7 +52,7 @@ class SMC_WordPress_Draugiem{
 		if ($file == $plugin) {
 			return array_merge( $links, array( 
 				'<a href="http://mediabox.lv/wordpress-draugiem/">www</a>',
-				'<a href="http://umbrovskis.com/ziedo/">' . __('Donate') . '</a>'
+				'<a href="http://umbrovskis.lv/labi-darbi/">' . __('Labs darbs?') . '</a>'
 
 			));
 		}
@@ -65,7 +65,7 @@ class SMC_WordPress_Draugiem{
 		$smcwpd_showfield = get_post_meta($post->ID, 'smcwpd_showfield', true);
 		$smcwpd_ieteikt_look = get_option('smc_wpd_ieteikt_look');
 	/*
-	 * @todo optimizēt!
+	 * @todo optimizēt smc_draugiem_say_content()!
 	*/
 		$paradit_smcwpd = 0;
 		if($showsmcwpd!='on' && $smcwpd_showfield=='1'){$paradit_smcwpd=1;}
@@ -126,14 +126,30 @@ class SMC_WordPress_Draugiem{
  * Draugiem ieteikt pogas īsais kods 
  * @since 1.3.0
 */
-	function smcwp_ieteikt_shortcode() {
-		global $post;
+	function smcwp_ieteikt_shortcode( $atts ) {
+
+        extract( shortcode_atts( array(
+            'postid' => null,
+            ), $atts )
+        );
+
+        if($postid == null){
+            global $post;
+            $postdata = get_post((int)$post->ID);
+        }else{
+            $postdata = get_post((int)$postid);
+        }
 		
-		$posturl = urlencode(get_permalink($post->ID));
-		$posttitle = urlencode($post->post_title);
-		$awesomeblog = urlencode(get_bloginfo('name'));
+		$posturl        = apply_filters( 'smcwp_ieteikt_posturl',         urlencode(get_permalink($postdata->ID)));
+		$posttitle      = apply_filters( 'smcwp_ieteikt_posttitle',       urlencode($postdata->post_title));
+		$awesomeblog    = apply_filters( 'smcwp_ieteikt_sitename',        urlencode(get_bloginfo('name')));
+		$draugiemlike   = apply_filters( 'smcwp_ieteikt_draugiemlikeurl', 'http://www.draugiem.lv/say/ext/like.php');
 		
-		return '<!-- WordPress Draugiem '.WPDRAUGIEMV.' by Rolands Umbrovskis | http://mediabox.lv/wordpress-draugiem/ -->'."\n".'<iframe height="20" width="84" frameborder="0" src="http://www.draugiem.lv/say/ext/like.php?title='.$posttitle.'&amp;url='.$posturl.'&amp;titlePrefix='.$awesomeblog.'"></iframe>'."\n".'<!-- //WordPress Draugiem -->';
+		return '<!-- WordPress Draugiem '.WPDRAUGIEMV.' by Rolands Umbrovskis | http://mediabox.lv/wordpress-draugiem/ -->'
+                ."\n".'<iframe height="20" width="84" frameborder="0" src="'
+                .$draugiemlikeurl.'?title='.$posttitle.'&amp;url='
+                .$posturl.'&amp;titlePrefix='.$awesomeblog.'"></iframe>'
+                ."\n".'<!-- //WordPress Draugiem -->';
 	}
 	
 	
@@ -219,16 +235,18 @@ class SMC_WordPress_Draugiem{
 					}
 				}
 	
-				if ($api_hitr > 14)
+                if ($api_hitr > 14){
 					break;
+                };
 			endwhile;
 	
 			wp_reset_postdata();
 			
 			// Remove the date range filter.
 			remove_filter('posts_where', $date_range_filter_function);
-			if ($api_hitr > 14)
+            if ($api_hitr > 14){
 				break;
+            };
 		}
 	}
 	function wpdr_head_generator(){
