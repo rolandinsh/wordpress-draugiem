@@ -143,7 +143,7 @@ class SMC_WordPress_Draugiem{
 		$posturl        = apply_filters( 'smcwp_ieteikt_posturl',         urlencode(get_permalink($postdata->ID)));
 		$posttitle      = apply_filters( 'smcwp_ieteikt_posttitle',       urlencode($postdata->post_title));
 		$awesomeblog    = apply_filters( 'smcwp_ieteikt_sitename',        urlencode(get_bloginfo('name')));
-		$draugiemlike   = apply_filters( 'smcwp_ieteikt_draugiemlikeurl', 'http://www.draugiem.lv/say/ext/like.php');
+		$draugiemlikeurl   = apply_filters( 'smcwp_ieteikt_draugiemlikeurl', 'http://www.draugiem.lv/say/ext/like.php');
 		
 		return '<!-- WordPress Draugiem '.WPDRAUGIEMV.' by Rolands Umbrovskis | http://mediabox.lv/wordpress-draugiem/ -->'
                 ."\n".'<iframe height="20" width="84" frameborder="0" src="'
