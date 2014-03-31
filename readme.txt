@@ -40,7 +40,7 @@ Apskaties arī [Draugiem.lv biznesa lapu sekotāju spraudnis](http://wordpress.o
 == Changelog ==
 
 = 2.1.1 =
-* Shorcode with attributes url fix
+* Shorcode wrong url variable fixed.
 
 = 2.1.0 =
 * Shorcode with attributes
@@ -123,7 +123,8 @@ jautājumu nav.
 == Upgrade Notice ==
 
 = 2.1.1 =
-* Shorcode with attributes url fix
+
+* Shorcode wrong url variable fixed.
 
 == Screenshots ==
 
