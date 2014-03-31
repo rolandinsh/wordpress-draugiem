@@ -3,8 +3,8 @@
  * Plugin Name: WordPress Draugiem
  * Plugin URI: http://mediabox.lv/wordpress-draugiem/?utm_source=wordpress&utm_medium=wpplugin&utm_campaign=WordPressDraugiem&utm_content=v-1-5-6-wp-draugiem_load_widgets
  * Description: WordPress plugin for Latvian Social Network Draugiem.lv
- * Version: 2.1.0
- * Requires at least: 2.6
+ * Version: 2.1.1
+ * Requires at least: 2.7
  * Tested up to: 3.8.1
  * Author: Rolands Umbrovskis
  * Author URI: http://umbrovskis.com
@@ -14,7 +14,7 @@
 
 
 
-define('WPDRAUGIEMV','2.1.0'); // location general @since 1.0.0
+define('WPDRAUGIEMV','2.1.1'); // location general @since 1.0.0
 define('WPDRAUGIEM',dirname(__FILE__)); // location general @since 1.0.0
 define('WPDRAUGIEMF','wordpress-draugiem'); // location folder @since 1.0.0
 define('WPDRAUGIEMURL', plugin_dir_url(__FILE__));
@@ -147,7 +147,7 @@ class SMC_WordPress_Draugiem{
 		
 		return '<!-- WordPress Draugiem '.WPDRAUGIEMV.' by Rolands Umbrovskis | http://mediabox.lv/wordpress-draugiem/ -->'
                 ."\n".'<iframe height="20" width="84" frameborder="0" src="'
-                .$draugiemlikeurl.'?title='.$posttitle.'&amp;url='
+                .$draugiemlike.'?title='.$posttitle.'&amp;url='
                 .$posturl.'&amp;titlePrefix='.$awesomeblog.'"></iframe>'
                 ."\n".'<!-- //WordPress Draugiem -->';
 	}

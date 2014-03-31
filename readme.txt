@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=Z4ALL
 Tags: sidebar, widget, frype, draugiem.lv, draugiem, fan page, frype.com, JSON, WPMU, WordPress Mustisite, WordPress MU, WPMS, social networking, social network, share, frype, ieteikt, ieteikt draugiem,
 Requires at least: 2.7
 Tested up to: 3.8.1
-Stable tag: 2.1.0
+Stable tag: 2.1.1
 License: simplemediacode
 License URI: http://simplemediacode.com/license/gpl/
 
@@ -38,6 +38,9 @@ Apskaties arī [Draugiem.lv biznesa lapu sekotāju spraudnis](http://wordpress.o
 * [WordPress mājas lapu un spraudņu izstrāde](http://mediabox.lv/)
 
 == Changelog ==
+
+= 2.1.1 =
+* Shorcode with attributes url fix
 
 = 2.1.0 =
 * Shorcode with attributes
@@ -119,8 +122,8 @@ jautājumu nav.
 
 == Upgrade Notice ==
 
-= 2.1.0 =
-* Shorcode with attributes
+= 2.1.1 =
+* Shorcode with attributes url fix
 
 == Screenshots ==
 
