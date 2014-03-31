@@ -147,7 +147,7 @@ class SMC_WordPress_Draugiem{
 		
 		return '<!-- WordPress Draugiem '.WPDRAUGIEMV.' by Rolands Umbrovskis | http://mediabox.lv/wordpress-draugiem/ -->'
                 ."\n".'<iframe height="20" width="84" frameborder="0" src="'
-                .$draugiemlike.'?title='.$posttitle.'&amp;url='
+                .$draugiemlikeurl.'?title='.$posttitle.'&amp;url='
                 .$posturl.'&amp;titlePrefix='.$awesomeblog.'"></iframe>'
                 ."\n".'<!-- //WordPress Draugiem -->';
 	}
