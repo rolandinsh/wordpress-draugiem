@@ -11,8 +11,8 @@
  * License: simplemediacode
  * License URI: http://simplemediacode.com/license/
  */
-
-
+// refactoring in progress
+// namespace Umbrovskis\Draugiem;
 
 define('WPDRAUGIEMV','2.1.1'); // location general @since 1.0.0
 define('WPDRAUGIEM',dirname(__FILE__)); // location general @since 1.0.0
@@ -33,15 +33,18 @@ $smc_wp_draugiem = new SMC_WordPress_Draugiem;
 * @since 2.0.0
 */
 class SMC_WordPress_Draugiem{
-	public function __construct(){
-		add_action('init', array( 'SMC_WordPress_Draugiem', 'init' ),10);
-		add_filter( 'plugin_row_meta', array( 'SMC_WordPress_Draugiem', 'smcwpd_set_plugin_meta' ), 10, 2 );
-		add_filter('the_content', array( 'SMC_WordPress_Draugiem', 'smc_draugiem_say_content'));
-		add_shortcode('ieteiktdraugiem', array( 'SMC_WordPress_Draugiem', 'smcwp_ieteikt_shortcode'));
-		add_shortcode('ieteikumusaraksts', array( 'SMC_WordPress_Draugiem', 'smcwp_ieteikt_shortcode_list'));
-		add_action('wp_footer', array( 'SMC_WordPress_Draugiem', 'wpdr_update_olddata'));
-		add_filter('wp_head', array( 'SMC_WordPress_Draugiem','wpdr_head_generator'),2); // location general @since 1.5.1
-	}
+    const WPDRAUGIEMV = '2.1.1';
+    const WPDRAUGIEMF = 'wordpress-draugiem';
+    
+    public function __construct(){
+        add_action('init', array( 'SMC_WordPress_Draugiem', 'init' ),10);
+        add_filter( 'plugin_row_meta', array( 'SMC_WordPress_Draugiem', 'smcwpd_set_plugin_meta' ), 10, 2 );
+        add_filter('the_content', array( 'SMC_WordPress_Draugiem', 'smc_draugiem_say_content'));
+        add_shortcode('ieteiktdraugiem', array( 'SMC_WordPress_Draugiem', 'smcwp_ieteikt_shortcode'));
+        add_shortcode('ieteikumusaraksts', array( 'SMC_WordPress_Draugiem', 'smcwp_ieteikt_shortcode_list'));
+        add_action('wp_footer', array( 'SMC_WordPress_Draugiem', 'wpdr_update_olddata'));
+        add_filter('wp_head', array( 'SMC_WordPress_Draugiem','wpdr_head_generator'),2); // location general @since 1.5.1
+    }
 	// Initialize
 	public function init() {
 		load_plugin_textdomain( 'wpdraugiem', false, dirname( plugin_basename( __FILE__ ) ). '/lang/');
