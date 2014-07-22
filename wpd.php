@@ -2,9 +2,9 @@
 
 /**
  * Plugin Name: WordPress Draugiem
- * Plugin URI: http://mediabox.lv/wordpress-draugiem/?utm_source=wordpress&utm_medium=wpplugin&utm_campaign=WordPressDraugiem&utm_content=v-1-5-6-wp-draugiem_load_widgets
+ * Plugin URI: http://mediabox.lv/wordpress-draugiem/?utm_source=wordpress&utm_medium=wpplugin&utm_campaign=WordPressDraugiem&utm_content=v-2-1-1-wp-draugiem_load_widgets
  * Description: WordPress plugin for Latvian Social Network Draugiem.lv
- * Version: 2.1.1
+ * Version: 3.0.0-alpha1
  * Requires at least: 2.7
  * Tested up to: 3.9.1
  * Author: Rolands Umbrovskis
@@ -14,41 +14,41 @@
  */
 // refactoring in progress
 // namespace Umbrovskis\Draugiem;
-
-define('WPDRAUGIEMV', '2.1.1'); // location general @since 1.0.0
+$smc_wp_draugiem = new SMC_WordPress_Draugiem;
+define('WPDRAUGIEMV', $smc_wp_draugiem::WPDRAUGIEMV); // location general @since 1.0.0
 define('WPDRAUGIEM', dirname(__FILE__)); // location general @since 1.0.0
-define('WPDRAUGIEMF', 'wordpress-draugiem'); // location folder @since 1.0.0
+define('WPDRAUGIEMF', $smc_wp_draugiem::WPDRAUGIEMF); // location folder @since 1.0.0
 define('WPDRAUGIEMURL', plugin_dir_url(__FILE__));
 define('WPDRAUGIEMI', WPDRAUGIEMURL . '/img'); // Image location @since 1.0.0
-define('WPDWPORG', 'http://wordpress.org/extend/plugins/' . WPDRAUGIEMF); // Image location @since 1.0.0
+define('WPDWPORG', $smc_wp_draugiem::WPDWPORGP . WPDRAUGIEMF); // @todo refactor
 
 if (!defined('DRAUGIEMJSAPI')) {
-    $ishttpsurl = is_ssl() ? 'https:' : 'http:';  // fix https @since 1.5.4.1
-    define('DRAUGIEMJSAPI', $ishttpsurl . '//www.draugiem.lv/api/api.js');
-} // unified constants across plugins @since 1.5.4
+    define('DRAUGIEMJSAPI', $smc_wp_draugiem->draugiemjsapi());
+}
 
+//new SMC_WordPress_Draugiem;
 
-new SMC_WordPress_Draugiem;
-$smc_wp_draugiem = new SMC_WordPress_Draugiem;
 /* SMC WordPress Draugiem Class
  * @since 2.0.0
  */
-
 class SMC_WordPress_Draugiem
 {
 
-    const WPDRAUGIEMV = '2.1.1';
+    const WPDRAUGIEMV = '3.0.0-alpha1';
     const WPDRAUGIEMF = 'wordpress-draugiem';
+    const DRAUGIEMJSAPI = '//www.draugiem.lv/api/api.js';
+    const WPDWPORGP = 'http://wordpress.org/extend/plugins/';
+    const MEDIABOX_PLUGIN_PAGE = 'http://mediabox.lv/wordpress-draugiem/';
 
     public function __construct()
     {
-        add_action('init', array('SMC_WordPress_Draugiem', 'init'), 10);
-        add_filter('plugin_row_meta', array('SMC_WordPress_Draugiem', 'smcwpd_set_plugin_meta'), 10, 2);
-        add_filter('the_content', array('SMC_WordPress_Draugiem', 'smc_draugiem_say_content'));
-        add_shortcode('ieteiktdraugiem', array('SMC_WordPress_Draugiem', 'smcwp_ieteikt_shortcode'));
-        add_shortcode('ieteikumusaraksts', array('SMC_WordPress_Draugiem', 'smcwp_ieteikt_shortcode_list'));
-        add_action('wp_footer', array('SMC_WordPress_Draugiem', 'wpdr_update_olddata'));
-        add_filter('wp_head', array('SMC_WordPress_Draugiem', 'wpdr_head_generator'), 2); // location general @since 1.5.1
+        add_action('init', array(&$this, 'init'), 10);
+        add_filter('plugin_row_meta', array(&$this, 'smcwpd_set_plugin_meta'), 10, 2);
+        add_filter('the_content', array(&$this, 'smc_draugiem_say_content'));
+        add_shortcode('ieteiktdraugiem', array(&$this, 'smcwp_ieteikt_shortcode'));
+        add_shortcode('ieteikumusaraksts', array(&$this, 'smcwp_ieteikt_shortcode_list'));
+        add_action('wp_footer', array(&$this, 'wpdr_update_olddata'));
+        add_filter('wp_head', array(&$this, 'wpdr_head_generator'), 2); // location general @since 1.5.1
     }
 
     // Initialize
@@ -56,13 +56,20 @@ class SMC_WordPress_Draugiem
     {
         load_plugin_textdomain('wpdraugiem', false, dirname(plugin_basename(__FILE__)) . '/lang/');
     }
+    public function draugiemjsapi(){
+        $ishttpsurl = is_ssl() ? 'https:' : 'http:';  // fix https @since 1.5.4.1
+        return $ishttpsurl . $this::DRAUGIEMJSAPI;
+    }
+    public function smcmarker(){
+        return 'WordPress Draugiem ' . $this::WPDRAUGIEMV . ' by Rolands Umbrovskis | '.$this::MEDIABOX_PLUGIN_PAGE;
+    }
 
     public function smcwpd_set_plugin_meta($links, $file)
     {
         $plugin = plugin_basename(__FILE__);
         if ($file == $plugin) {
             return array_merge($links, array(
-                '<a href="http://mediabox.lv/wordpress-draugiem/">www</a>',
+                '<a href="'.$this::MEDIABOX_PLUGIN_PAGE.'">www</a>',
                 '<a href="http://umbrovskis.lv/labi-darbi/">' . __('Labs darbs?') . '</a>'
             ));
         }
@@ -102,27 +109,44 @@ class SMC_WordPress_Draugiem
                 $awesomebloge = addcslashes(get_bloginfo('name'), '"');
                 if ($smcwpd_ieteikt_location === '1') {
                     if ($smcwpd_ieteikt_look == '2') {
-                        return '<!-- WordPress Draugiem ' . WPDRAUGIEMV . ' by Rolands Umbrovskis | http://mediabox.lv/wordpress-draugiem/ -->' . "\n" . '<div class="smc_draugiem_ieteikt"><div id="draugiemLike-' . $post->ID . '"></div><script type="text/javascript">var p = {layout:"bubble",link:"' . $posturlr . '", title:"' . $posttitlee . '", titlePrefix:"' . $awesomebloge . '"}; new DApi.Like(p).append(\'draugiemLike-' . $post->ID . '\');</script></div>' . "\n" . '<!-- //WordPress Draugiem -->' . $content;
+                        return '<!-- '.$this->smcmarker().' -->' 
+                                . "\n" . '<div class="smc_draugiem_ieteikt"><div id="draugiemLike-' 
+                                . $post->ID . '"></div><script type="text/javascript">var p = {layout:"bubble",link:"' 
+                                . $posturlr . '", title:"' . $posttitlee . '", titlePrefix:"' 
+                                . $awesomebloge . '"}; new DApi.Like(p).append(\'draugiemLike-' 
+                                . $post->ID . '\');</script></div>' . "\n" . '<!-- //WordPress Draugiem -->' 
+                                . $content;
                     } elseif ($smcwpd_ieteikt_look == '3') {
-                        return '<!-- WordPress Draugiem ' . WPDRAUGIEMV . ' by Rolands Umbrovskis | http://mediabox.lv/wordpress-draugiem/ -->' . "\n" . '<div class="smc_draugiem_ieteikt"><div id="draugiemLike-' . $post->ID . '"></div><script type="text/javascript">var p = {layout:"icon",link:"' . $posturlr . '", title:"' . $posttitlee . '", titlePrefix:"' . $awesomebloge . '"}; new DApi.Like(p).append(\'draugiemLike-' . $post->ID . '\');</script></div>' . "\n" . '<!-- //WordPress Draugiem -->' . $content;
+                        return '<!-- '.$this->smcmarker().' -->' . "\n" . '<div class="smc_draugiem_ieteikt"><div id="draugiemLike-' 
+                                . $post->ID . '"></div><script type="text/javascript">var p = {layout:"icon",link:"' 
+                                . $posturlr . '", title:"' . $posttitlee . '", titlePrefix:"' 
+                                . $awesomebloge . '"}; new DApi.Like(p).append(\'draugiemLike-' 
+                                . $post->ID . '\');</script></div>' . "\n" . '<!-- //WordPress Draugiem -->' . $content;
                     } else {
-                        return '<!-- WordPress Draugiem ' . WPDRAUGIEMV . ' by Rolands Umbrovskis | http://mediabox.lv/wordpress-draugiem/ -->' . "\n" . '<div class="smc_draugiem_ieteikt"><iframe height="20" width="84" frameborder="0" src="http://www.draugiem.lv/say/ext/like.php?title=' . $posttitle . '&amp;url=' . $posturl . '&amp;titlePrefix=' . $awesomeblog . '"></iframe></div>' . "\n" . '<!-- //WordPress Draugiem -->' . "\n" . $content;
+                        return '<!-- '.$this->smcmarker().' -->' . "\n" 
+                                . '<div class="smc_draugiem_ieteikt"><iframe height="20" width="84" frameborder="0" src="http://www.draugiem.lv/say/ext/like.php?title=' 
+                                . $posttitle . '&amp;url=' . $posturl . '&amp;titlePrefix=' . $awesomeblog . '"></iframe></div>' . "\n" 
+                                . '<!-- //WordPress Draugiem -->' . "\n" . $content;
                     }
                 } elseif ($smcwpd_ieteikt_location === '2') {
                     if ($smcwpd_ieteikt_look == '2') {
-                        return $content . "\n" . '<!-- WordPress Draugiem ' . WPDRAUGIEMV . ' by Rolands Umbrovskis | http://mediabox.lv/wordpress-draugiem/ -->' . "\n" . '<div class="smc_draugiem_ieteikt"><div id="draugiemLike-' . $post->ID . '"></div><script type="text/javascript">var p = {layout:"bubble",link:"' . $posturlr . '", title:"' . $posttitlee . '", titlePrefix:"' . esc_attr($awesomebloge) . '"}; new DApi.Like(p).append(\'draugiemLike-' . $post->ID . '\');</script></div>' . "\n" . '<!-- //WordPress Draugiem -->';
+                        return $content . "\n" . '<!-- '.$this->smcmarker().' -->' 
+                                . "\n" . '<div class="smc_draugiem_ieteikt"><div id="draugiemLike-' . $post->ID . '"></div><script type="text/javascript">var p = {layout:"bubble",link:"' . $posturlr . '", title:"' . $posttitlee . '", titlePrefix:"' . esc_attr($awesomebloge) . '"}; new DApi.Like(p).append(\'draugiemLike-' . $post->ID . '\');</script></div>' . "\n" . '<!-- //WordPress Draugiem -->';
                     } elseif ($smcwpd_ieteikt_look == '3') {
-                        return '<!-- WordPress Draugiem ' . WPDRAUGIEMV . ' by Rolands Umbrovskis | http://mediabox.lv/wordpress-draugiem/ -->' . "\n" . '<div class="smc_draugiem_ieteikt"><div id="draugiemLike-' . $post->ID . '"></div><script type="text/javascript">var p = {layout:"icon",link:"' . $posturlr . '", title:"' . $posttitlee . '", titlePrefix:"' . $awesomebloge . '"}; new DApi.Like(p).append(\'draugiemLike-' . $post->ID . '\');</script></div>' . "\n" . '<!-- //WordPress Draugiem -->' . $content;
+                        return '<!-- '.$this->smcmarker().' -->' . "\n" . '<div class="smc_draugiem_ieteikt"><div id="draugiemLike-' . $post->ID . '"></div><script type="text/javascript">var p = {layout:"icon",link:"' . $posturlr . '", title:"' . $posttitlee . '", titlePrefix:"' . $awesomebloge . '"}; new DApi.Like(p).append(\'draugiemLike-' . $post->ID . '\');</script></div>' . "\n" . '<!-- //WordPress Draugiem -->' . $content;
                     } else {
-                        return $content . "\n" . '<!-- WordPress Draugiem ' . WPDRAUGIEMV . ' by Rolands Umbrovskis | http://mediabox.lv/wordpress-draugiem/ -->' . "\n" . '<div class="smc_draugiem_ieteikt"><iframe height="20" width="84" frameborder="0" src="http://www.draugiem.lv/say/ext/like.php?title=' . $posttitle . '&amp;url=' . $posturl . '&amp;titlePrefix=' . $awesomeblog . '"></iframe></div>' . "\n" . '<!-- //WordPress Draugiem -->';
+                        return $content . "\n" . '<!-- '.$this->smcmarker().' -->' . "\n" . '<div class="smc_draugiem_ieteikt"><iframe height="20" width="84" frameborder="0" src="http://www.draugiem.lv/say/ext/like.php?title=' . $posttitle . '&amp;url=' . $posturl . '&amp;titlePrefix=' . $awesomeblog . '"></iframe></div>' . "\n" . '<!-- //WordPress Draugiem -->';
                     }
                 } elseif ($smcwpd_ieteikt_location === '3') {
                     if ($smcwpd_ieteikt_look == '2') {
-                        return '<div class="smc_draugiem_ieteikt"><div id="draugiemLike-' . $post->ID . '-1"></div><script type="text/javascript">var p = {layout:"bubble",link:"' . $posturlr . '", title:"' . $posttitlee . '", titlePrefix:"' . $awesomebloge . '"}; new DApi.Like(p).append(\'draugiemLike-' . $post->ID . '-1\');</script></div>' . $content . "\n" . '<!-- WordPress Draugiem ' . WPDRAUGIEMV . ' by Rolands Umbrovskis | http://mediabox.lv/wordpress-draugiem/ --><div class="smc_draugiem_ieteikt"><div id="draugiemLike-' . $post->ID . '-2"></div><script type="text/javascript">var p = {layout:"bubble",link:"' . $posturlr . '", title:"' . $posttitlee . '", titlePrefix:"' . $awesomebloge . '"}; new DApi.Like(p).append(\'draugiemLike-' . $post->ID . '-2\');</script></div>' . "\n" . '<!-- //WordPress Draugiem -->';
+                        return '<div class="smc_draugiem_ieteikt"><div id="draugiemLike-' . $post->ID . '-1"></div><script type="text/javascript">var p = {layout:"bubble",link:"' . $posturlr . '", title:"' . $posttitlee . '", titlePrefix:"' . $awesomebloge . '"}; new DApi.Like(p).append(\'draugiemLike-' . $post->ID . '-1\');</script></div>' . $content . "\n" 
+                                . '<!-- '.$this->smcmarker().' --><div class="smc_draugiem_ieteikt"><div id="draugiemLike-' . $post->ID . '-2"></div><script type="text/javascript">var p = {layout:"bubble",link:"' . $posturlr . '", title:"' . $posttitlee . '", titlePrefix:"' . $awesomebloge . '"}; new DApi.Like(p).append(\'draugiemLike-' . $post->ID . '-2\');</script></div>' . "\n" . '<!-- //WordPress Draugiem -->';
                     } elseif ($smcwpd_ieteikt_look == '3') {
-                        return '<!-- WordPress Draugiem ' . WPDRAUGIEMV . ' by Rolands Umbrovskis | http://mediabox.lv/wordpress-draugiem/ -->' . "\n" . '<div class="smc_draugiem_ieteikt"><div id="draugiemLike-' . $post->ID . '"></div><script type="text/javascript">var p = {layout:"icon",link:"' . $posturlr . '", title:"' . $posttitlee . '", titlePrefix:"' . $awesomebloge . '"}; new DApi.Like(p).append(\'draugiemLike-' . $post->ID . '\');</script></div>' . "\n" . '<!-- //WordPress Draugiem -->' . $content;
+                        return '<!-- '.$this->smcmarker().' -->' . "\n" . '<div class="smc_draugiem_ieteikt"><div id="draugiemLike-' . $post->ID . '"></div><script type="text/javascript">var p = {layout:"icon",link:"' . $posturlr . '", title:"' . $posttitlee . '", titlePrefix:"' . $awesomebloge . '"}; new DApi.Like(p).append(\'draugiemLike-' . $post->ID . '\');</script></div>' . "\n" . '<!-- //WordPress Draugiem -->' . $content;
                     } else {
-                        return '<div class="smc_draugiem_ieteikt"><iframe height="20" width="84" frameborder="0" src="http://www.draugiem.lv/say/ext/like.php?title=' . $posttitle . '&amp;url=' . $posturl . '&amp;titlePrefix=' . $awesomeblog . '"></iframe></div>' . $content . "\n" . '<!-- WordPress Draugiem ' . WPDRAUGIEMV . ' by Rolands Umbrovskis | http://mediabox.lv/wordpress-draugiem/ --><div class="smc_draugiem_ieteikt"><iframe height="20" width="84" frameborder="0" src="http://www.draugiem.lv/say/ext/like.php?title=' . $posttitle . '&amp;url=' . $posturl . '&amp;titlePrefix=' . $awesomeblog . '"></iframe></div>' . "\n" . '<!-- //WordPress Draugiem -->';
+                        return '<div class="smc_draugiem_ieteikt"><iframe height="20" width="84" frameborder="0" src="http://www.draugiem.lv/say/ext/like.php?title=' 
+                        . $posttitle . '&amp;url=' . $posturl . '&amp;titlePrefix=' . $awesomeblog . '"></iframe></div>' . $content . "\n" 
+                                . '<!-- '.$this->smcmarker().' --><div class="smc_draugiem_ieteikt"><iframe height="20" width="84" frameborder="0" src="http://www.draugiem.lv/say/ext/like.php?title=' . $posttitle . '&amp;url=' . $posturl . '&amp;titlePrefix=' . $awesomeblog . '"></iframe></div>' . "\n" . '<!-- //WordPress Draugiem -->';
                     }
                 } else {
                     return $content;
@@ -161,7 +185,7 @@ class SMC_WordPress_Draugiem
         $awesomeblog = apply_filters('smcwp_ieteikt_sitename', urlencode(get_bloginfo('name')));
         $draugiemlikeurl = apply_filters('smcwp_ieteikt_draugiemlikeurl', 'http://www.draugiem.lv/say/ext/like.php');
 
-        return '<!-- WordPress Draugiem ' . WPDRAUGIEMV . ' by Rolands Umbrovskis | http://mediabox.lv/wordpress-draugiem/ -->'
+        return '<!-- '.$this->smcmarker().' -->'
                 . "\n" . '<iframe height="20" width="84" frameborder="0" src="'
                 . $draugiemlikeurl . '?title=' . $posttitle . '&amp;url='
                 . $posturl . '&amp;titlePrefix=' . $awesomeblog . '"></iframe>'
@@ -178,7 +202,11 @@ class SMC_WordPress_Draugiem
 
         global $post;
 
-        return '<!-- WordPress Draugiem ' . WPDRAUGIEMV . ' by Rolands Umbrovskis | http://mediabox.lv/wordpress-draugiem/ -->' . "\n" . '<iframe src="http://www.draugiem.lv/say/ext/recommend.php?url=' . $domain . '&count=' . $count . '" frameborder="0" class="smc_draugiem_recommend_list" id="' . $id . '"></iframe>' . "\n" . '<!-- //WordPress Draugiem -->';
+        return '<!-- '.$this->smcmarker().' -->' . "\n" 
+                . '<iframe src="http://www.draugiem.lv/say/ext/recommend.php?url=' 
+                . $domain . '&count=' . $count . '" frameborder="0" class="smc_draugiem_recommend_list" id="' 
+                . $id . '"></iframe>' . "\n" 
+                . '<!-- //WordPress Draugiem -->';
     }
 
     function wpdr_update_olddata()
@@ -268,7 +296,9 @@ class SMC_WordPress_Draugiem
 
     function wpdr_head_generator()
     {
-        echo "\n<!-- WordPress Draugiem " . WPDRAUGIEMV . " by Rolands Umbrovskis | http://mediabox.lv/wordpress-draugiem/ -->\n" . '<meta name="generator" content="WordPress Draugiem by Rolands Umbrovskis" />' . "\n<!-- WordPress Draugiem  " . WPDRAUGIEMV . "  by Rolands Umbrovskis -->\n";
+        echo "\n<!-- ".$this->smcmarker()." -->\n" 
+                . '<meta name="generator" content="WordPress Draugiem by Rolands Umbrovskis" />' 
+                . "\n<!-- ".$this->smcmarker()." -->\n";
     }
 
 }
