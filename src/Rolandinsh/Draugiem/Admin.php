@@ -2,7 +2,7 @@
 
 namespace Rolandinsh\Draugiem;
 
-class Admin extends Rwpd
+class WpdAdmin
 {
 
     public function __construct()
