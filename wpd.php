@@ -6,7 +6,7 @@
  * Description: WordPress plugin for Latvian Social Network Draugiem.lv
  * Version: 2.1.1
  * Requires at least: 2.7
- * Tested up to: 3.8.1
+ * Tested up to: 4.4.2
  * Author: Rolands Umbrovskis
  * Author URI: http://umbrovskis.com
  * License: simplemediacode
