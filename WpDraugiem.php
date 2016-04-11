@@ -24,24 +24,24 @@ if (!defined('DRAUGIEMJSAPI')) {
 } // unified constants across plugins @since 1.5.4
 
 
-new SMC_WordPress_Draugiem;
-$smc_wp_draugiem = new SMC_WordPress_Draugiem;
+new WpDraugiem();
+$smc_wp_draugiem = new WpDraugiem;
 /* SMC WordPress Draugiem Class
  * @since 2.0.0
  */
 
-class SMC_WordPress_Draugiem
+class WpDraugiem
 {
 
     public function __construct()
     {
-        add_action('init', array('SMC_WordPress_Draugiem', 'init'), 10);
-        add_filter('plugin_row_meta', array('SMC_WordPress_Draugiem', 'smcwpd_set_plugin_meta'), 10, 2);
-        add_filter('the_content', array('SMC_WordPress_Draugiem', 'smc_draugiem_say_content'));
-        add_shortcode('ieteiktdraugiem', array('SMC_WordPress_Draugiem', 'smcwp_ieteikt_shortcode'));
-        add_shortcode('ieteikumusaraksts', array('SMC_WordPress_Draugiem', 'smcwp_ieteikt_shortcode_list'));
-        add_action('wp_footer', array('SMC_WordPress_Draugiem', 'wpdr_update_olddata'));
-        add_filter('wp_head', array('SMC_WordPress_Draugiem', 'wpdr_head_generator'), 2); // location general @since 1.5.1
+        add_action('init', array('WpDraugiem', 'init'), 10);
+        add_filter('plugin_row_meta', array('WpDraugiem', 'smcwpd_set_plugin_meta'), 10, 2);
+        add_filter('the_content', array('WpDraugiem', 'smc_draugiem_say_content'));
+        add_shortcode('ieteiktdraugiem', array('WpDraugiem', 'smcwp_ieteikt_shortcode'));
+        add_shortcode('ieteikumusaraksts', array('WpDraugiem', 'smcwp_ieteikt_shortcode_list'));
+        add_action('wp_footer', array('WpDraugiem', 'wpdr_update_olddata'));
+        add_filter('wp_head', array('WpDraugiem', 'wpdr_head_generator'), 2); // location general @since 1.5.1
     }
 
     // Initialize
@@ -55,8 +55,8 @@ class SMC_WordPress_Draugiem
         $plugin = plugin_basename(__FILE__);
         if ($file == $plugin) {
             return array_merge($links, array(
-                '<a href="http://mediabox.lv/wordpress-draugiem/">www</a>',
-                '<a href="http://umbrovskis.lv/labi-darbi/">' . __('Labs darbs?') . '</a>'
+                '<a href="https://mediabox.lv/wordpress-draugiem/">www</a>',
+                '<a href="https://umbrovskis.lv/labi-darbi/">' . __('Labs darbs?') . '</a>'
             ));
         }
         return $links;

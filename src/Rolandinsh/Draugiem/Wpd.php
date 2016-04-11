@@ -14,7 +14,7 @@ class Wpd
     const WPDRAUGIEMF = 'wordpress-draugiem';
     const DRAUGIEMJSAPI = '//www.draugiem.lv/api/api.js';
     const WPDWPORGP = 'http://wordpress.org/extend/plugins/';
-    const MEDIABOX_PLUGIN_PAGE = 'http://mediabox.lv/wordpress-draugiem/';
+    const MEDIABOX_PLUGIN_PAGE = 'https://mediabox.lv/wordpress-draugiem/';
 
     public function __construct()
     {
@@ -51,7 +51,7 @@ class Wpd
         if ($file == $plugin) {
             return array_merge($links, array(
                 '<a href="' . $this::MEDIABOX_PLUGIN_PAGE . '">www</a>',
-                '<a href="http://umbrovskis.lv/labi-darbi/">' . __('Labs darbs?') . '</a>'
+                '<a href="https://umbrovskis.lv/labi-darbi/">' . __('Labs darbs?') . '</a>'
             ));
         }
         return $links;
