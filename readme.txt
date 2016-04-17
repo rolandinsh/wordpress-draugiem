@@ -1,10 +1,10 @@
-﻿=== ieteikt Draugiem WordPress spraudnis ===
+=== ieteikt Draugiem WordPress spraudnis ===
 Contributors: rolandinsh
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=Z4ALL9WUMY3CL&lc=LV&item_name=Umbrovskis%2e%20WordPress%20plugins&item_number=002&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted
 Tags: sidebar, widget, frype, draugiem.lv, draugiem, fan page, frype.com, JSON, WPMU, WordPress Mustisite, WordPress MU, WPMS, social networking, social network, share, frype, ieteikt, ieteikt draugiem,
 Requires at least: 2.7
-Tested up to: 3.8.1
-Stable tag: 2.1.2
+Tested up to: 4.5
+Stable tag: 2.1.3
 License: simplemediacode
 License URI: http://simplemediacode.com/license/gpl/
 
@@ -14,7 +14,7 @@ WordPress plugin for Latvian Social Network Draugiem.lv
 
 WordPress plugin for Latvian Social Network Draugiem.lv. Add "share" button before, after or in middle of content
 
-WordPress spraudnis Draugiem.lv ieteikšanai. Poga tiek ievietota pirms raksta. **[WordPress Draugiem](http://mediabox.lv/wordpress-draugiem/)** tiks laika gaitā papildināts arī ar citiem draugiem.lv risinājumiem inteneta mājas lapā. Šis ir tikai pirmais solis.
+WordPress spraudnis Draugiem.lv ieteikšanai. Poga tiek ievietota pirms raksta. **[WordPress Draugiem](https://mediabox.lv/wordpress-draugiem/)** tiks laika gaitā papildināts arī ar citiem draugiem.lv risinājumiem inteneta mājas lapā. Šis ir tikai pirmais solis.
 
 == Translations ==
 
@@ -27,16 +27,22 @@ WordPress spraudnis Draugiem.lv ieteikšanai. Poga tiek ievietota pirms raksta. 
 * Plašāka draugiem.lv API izmantošana (pasākumi, lapas). Cik vien tas būs iespējams caur vienu aplikāciju.
 * Spraudņa lietošanas statistika (pēc izvēles)
 
-Apskaties arī [Draugiem.lv biznesa lapu sekotāju spraudnis](http://wordpress.org/extend/plugins/draugiemlvlapas-fan-page/)
+Apskaties arī [Draugiem.lv biznesa lapu sekotāju spraudnis](https://wordpress.org/plugins/draugiemlvlapas-fan-page/)
 
 
 = Noderīgas saites = 
 
-* Izstrādātāja mājas lapa [Umbrovskis.lv](http://umbrovskis.lv/)
-* [WordPress Draugiem spraudņa lapa](http://mediabox.lv/wordpress-draugiem/)
-* [WordPress mājas lapu un spraudņu izstrāde](http://mediabox.lv/)
+* Izstrādātāja mājas lapa [Umbrovskis.lv](https://umbrovskis.lv/)
+* [WordPress Draugiem spraudņa lapa](https://mediabox.lv/wordpress-draugiem/)
+* [WordPress mājas lapu un spraudņu izstrāde](https://mediabox.lv/)
 
 == Changelog ==
+
+= 2.1.3 =
+
+* HTTPS everywhere;
+* DRY principle;
+* tested up to WordPress 4.5;
 
 = 2.1.2 =
 * PHP Strict Standards: Non-static methods should not be called statically
@@ -105,7 +111,7 @@ Apskaties arī [Draugiem.lv biznesa lapu sekotāju spraudnis](http://wordpress.o
 
 == More info ==
 
-* Vairāk informācijas [WordPress Draugiem](http://mediabox.lv/wordpress-draugiem/) mājas lapā.
+* Vairāk informācijas [WordPress Draugiem](https://mediabox.lv/wordpress-draugiem/) mājas lapā.
 
 == Installation ==
 
@@ -124,10 +130,14 @@ jautājumu nav.
 
 == Upgrade Notice ==
 
+= 2.1.3 =
+
+* HTTPS everywhere;
+
 = 2.1.2 =
 * PHP Strict Standards: Non-static methods should not be called statically
 
 == Screenshots ==
 
-1. Content http://mediabox.lv/wordpress-draugiem/
-1. Admin http://mediabox.lv/wordpress-draugiem/
+1. Content https://mediabox.lv/wordpress-draugiem/
+1. Admin https://mediabox.lv/wordpress-draugiem/
