@@ -5,7 +5,7 @@
  * Description: WordPress plugin for Latvian Social Network Draugiem.lv
  * Version: 2.1.2
  * Requires at least: 2.7
- * Tested up to: 4.4.2
+ * Tested up to: 4.5
  * Author: Rolands Umbrovskis
  * Author URI: https://umbrovskis.com/
  * License: simplemediacode
@@ -55,8 +55,7 @@ class SMC_WordPress_Draugiem
         $plugin = plugin_basename(__FILE__);
         if ($file == $plugin) {
             return array_merge($links, array(
-                '<a href="http://mediabox.lv/wordpress-draugiem/">www</a>',
-                '<a href="http://umbrovskis.lv/labi-darbi/">' . __('Labs darbs?') . '</a>'
+                '<a href="https://mediabox.lv/wordpress-draugiem/">www</a>',
             ));
         }
         return $links;
